@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>13</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>533</x>
+      <y>247</y>
+      <w>312</w>
+      <h>338</h>
+    </coordinates>
+    <panel_attributes>Spiel
+--
+Hat:
+Koordinatensystem fuer die felder
+Spieler
+---
+Muss tun
+Einheiten bewegen
+Einheiten platzieren
+Spieleressourcen verwalten
+-&gt;Units kaufen, einsammeln
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>689</x>
+      <y>156</y>
+      <w>130</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>Gamescreen
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>819</x>
+      <y>0</y>
+      <w>130</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>Game</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>819</x>
+      <y>65</y>
+      <w>130</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>TitleScreen
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>988</x>
+      <y>156</y>
+      <w>169</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>LeveleditorScreen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>65</x>
+      <y>429</y>
+      <w>260</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>Spieler
+--
+Ressourcen
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>169</x>
+      <y>962</y>
+      <w>195</w>
+      <h>221</h>
+    </coordinates>
+    <panel_attributes>SimpleClass
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>793</x>
+      <y>897</y>
+      <w>195</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>Bonus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1287</x>
+      <y>871</y>
+      <w>234</w>
+      <h>221</h>
+    </coordinates>
+    <panel_attributes>Einheite
+--
+Zugehörigkeit
+Typ
+Kosten
+Bewegung
+Stärke
+Gold im Besitz?
+---&gt;Zurücktragen nötig j/n</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>741</x>
+      <y>637</y>
+      <w>429</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>Feld
+--
+Feldtyp
+Einheit (Verweis)
+Bonus (Verweis)?
+Spielerstrukturen
+--
+Wenn angeklickt
+-&gt; Einheit hier j/n
+--&gt; Wenn ja
+--Durchfuehren der Bewegungroutine
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>429</x>
+      <y>637</y>
+      <w>221</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>Feldtyp
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1040</x>
+      <y>338</y>
+      <w>364</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>Bewegung
+--
+----&gt;Abrufen der Bewgungsreichweite
+--Abhängig von:
+-Einheit (typ + evtl. boni/mali)
+-Feldtypen (hindernisse + bewegungskosten)
+-- Sternförmig anzeigen in abh. zu
+----&gt; Bei klcik auf ein anderes Feld 
+als das eigenenin Reichweite
+-&gt;Bewegungsreichweite von dort abrufen
+minus der Bewegungskosten dorthin
+----&gt;Bei klick auf das eigene Angriffroutine
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
