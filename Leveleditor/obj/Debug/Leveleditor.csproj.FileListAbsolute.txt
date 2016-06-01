@@ -1,0 +1,9 @@
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\bin\Debug\Leveleditor.exe.config
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\bin\Debug\Leveleditor.exe
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\bin\Debug\Leveleditor.pdb
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.csprojResolveAssemblyReference.cache
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.Form1.resources
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.Properties.Resources.resources
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.csproj.GenerateResource.Cache
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.exe
+c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.pdb
