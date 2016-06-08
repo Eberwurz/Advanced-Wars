@@ -10,6 +10,18 @@ namespace Leveleditor
     {
         private String mType;
         private String mPowerUp;
+        private String mPlayer;
+        public string Player
+        {
+            get
+            {
+                return mPlayer;
+            }
+            set
+            {
+                mPlayer = value;
+            }
+        }
         public string Type
         {
             get
@@ -32,10 +44,30 @@ namespace Leveleditor
                 mPowerUp = value;
             }
         }
+        public Field(string type)
+        {
+            mType = type;
+            mPowerUp = GameConstants.POWERUP_NONE;
+            mPlayer = GameConstants.PLAYER_NONE;
+        }
         public Field(string type, string bonus)
         {
             mType = type;
             mPowerUp = bonus;
+            mPlayer = GameConstants.PLAYER_NONE;
+        }
+        public Field(string type, string bonus, string player)
+        {
+            mType = type;
+            mPowerUp = bonus;
+            mPlayer = player;
+        }
+
+        public void CopyValues(Field field)
+        {
+            mType = field.mType;
+            mPlayer = field.mPlayer;
+            mPowerUp = field.mPowerUp;
         }
     }
 }

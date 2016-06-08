@@ -9,26 +9,19 @@ namespace Leveleditor
     public class xmlWriter
     {
         private string mSavePath;
-        private Field[,] mFields;
-        private string mName;
 
         public xmlWriter()
         {
             mSavePath = "xmlConfig.xml";
-            mFields = null;
-            mName = null;
         }
 
-        public xmlWriter(string path, Field[,] fields, string name)
+        public xmlWriter(string path)
         {
-            mSavePath = path + "xmlConfig.xml";
-            mFields = fields;
-            mName = name;
+            mSavePath = path + "\\xmlConfig.xml";
         }
 
-        public bool WriteXMLFile()
+        public void WriteXMLFile(Field[,] fields, string name)
         {
-            bool success = true;
             try
             {
                 XmlTextWriter myXmlTextWriter = new XmlTextWriter(mSavePath, null);
@@ -37,22 +30,23 @@ namespace Leveleditor
                 myXmlTextWriter.WriteComment("Dieser Teil ist noch alternativ");
 
                 myXmlTextWriter.WriteStartElement("GameField", null);
-                myXmlTextWriter.WriteAttributeString("Name", mName);
+                myXmlTextWriter.WriteAttributeString("Name", name);
 
                 myXmlTextWriter.WriteStartElement("Size", null);
-                myXmlTextWriter.WriteAttributeString("Rows", mFields.GetLength(0).ToString());
-                myXmlTextWriter.WriteAttributeString("Columns", mFields.GetLength(1).ToString());
+                myXmlTextWriter.WriteAttributeString("Rows", fields.GetLength(0).ToString());
+                myXmlTextWriter.WriteAttributeString("Columns", fields.GetLength(1).ToString());
                 myXmlTextWriter.WriteEndElement();
 
                 myXmlTextWriter.WriteStartElement("Fields", null);
 
-                for (int x = 0; x < mFields.GetLength(0); x++)
+                for (int y = 0; y < fields.GetLength(1); y++)
                 {
-                    for (int y = 0; y < mFields.GetLength(1); y++)
+                    for (int x = 0; x < fields.GetLength(0); x++)
                     {
                         myXmlTextWriter.WriteStartElement("Field", null);
-                        myXmlTextWriter.WriteAttributeString("Type", mFields[x, y].Type);
-                        myXmlTextWriter.WriteAttributeString("PowerUps", mFields[x, y].PowerUp);
+                        myXmlTextWriter.WriteAttributeString("Type", fields[x, y].Type);
+                        myXmlTextWriter.WriteAttributeString("PowerUps", fields[x, y].PowerUp);
+                        myXmlTextWriter.WriteAttributeString("Player", fields[x, y].Player);
                         myXmlTextWriter.WriteEndElement();
                     }  
                 }
@@ -64,10 +58,8 @@ namespace Leveleditor
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                success = false;
+                throw ex;
             }
-            return success;
         }
     }
 }

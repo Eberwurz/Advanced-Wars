@@ -7,3 +7,12 @@ c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveledit
 c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.csproj.GenerateResource.Cache
 c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.exe
 c:\users\agentilo-rk\documents\visual studio 2015\Projects\Leveleditor\Leveleditor\obj\Debug\Leveleditor.pdb
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\bin\Debug\Leveleditor.exe.config
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.exe
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.pdb
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\bin\Debug\Leveleditor.exe
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\bin\Debug\Leveleditor.pdb
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.Form1.resources
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.Properties.Resources.resources
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.csproj.GenerateResource.Cache
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.csprojResolveAssemblyReference.cache
