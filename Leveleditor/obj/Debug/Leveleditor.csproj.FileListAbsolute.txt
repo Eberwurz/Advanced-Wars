@@ -16,3 +16,13 @@ C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Levele
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.Properties.Resources.resources
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.csproj.GenerateResource.Cache
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\Leveleditor\obj\Debug\Leveleditor.csprojResolveAssemblyReference.cache
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\bin\Debug\Leveleditor.exe.config
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\obj\Debug\Leveleditor.exe
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\obj\Debug\Leveleditor.pdb
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\bin\Debug\Leveleditor.exe
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\bin\Debug\Leveleditor.pdb
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\obj\Debug\Leveleditor.csprojResolveAssemblyReference.cache
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\obj\Debug\Leveleditor.Form1.resources
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\obj\Debug\Leveleditor.Properties.Resources.resources
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\obj\Debug\Leveleditor.csproj.GenerateResource.Cache
+C:\Users\René\Documents\GitHub\AdvancedWars\Leveleditor\bin\Debug\Images\Wellen50.png

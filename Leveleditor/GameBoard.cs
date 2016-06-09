@@ -38,9 +38,9 @@ namespace Leveleditor
             mWidth = width;
             mHeight = height;
             mFields = new Field[width, height];
-            initFields();
             initPictures();
-            mRedBase=new Point(-1, -1);
+            initFields();
+            mRedBase =new Point(-1, -1);
             mBlueBase =new Point(-1, -1);
         }
 
@@ -52,7 +52,7 @@ namespace Leveleditor
                 mImageBase= new Bitmap("Images\\Island.png");
                 mImageBaseRed = new Bitmap("Images\\IslandRed.png");
                 mImageBaseBlue = new Bitmap("Images\\IslandBlue.png");
-                mImageNormal = new Bitmap("Images\\Water.png");
+                mImageNormal = new Bitmap("Images\\Wellen50.png");
                 mImageMountain = new Bitmap("Images\\Riff.png");
                 mImageBoost = new Bitmap("Images\\Boost.png");
                 mImageSlow = new Bitmap("Images\\Slow.png");
@@ -203,6 +203,7 @@ namespace Leveleditor
                 for (int y = 0; y < mHeight; y++)
                 {
                     mFields[x, y] = new Field(GameConstants.TYPE_NORMAL, GameConstants.POWERUP_NONE);
+                    updateGameBoardImage(mFields[x, y], x, y);
                 }
             }
         }

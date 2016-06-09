@@ -27,6 +27,7 @@ namespace Leveleditor
             mPowerUpPictures = new PictureBox[]{picBoost, picSlow, picNone };
             mFieldPictures = new PictureBox[]{ picWater, picIslandRed, picIslandBlue, picRiff };
             mBaseCount = 0;
+            picGameField.Image = mGameBoard.GameBoardImage;
             LogMessage("1. Base auswählen", Color.Black);
         }
 
