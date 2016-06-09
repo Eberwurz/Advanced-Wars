@@ -1,137 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>13</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>533</x>
-      <y>247</y>
-      <w>312</w>
-      <h>338</h>
+      <x>660</x>
+      <y>48</y>
+      <w>132</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>Spiel
 --
-Hat:
-Koordinatensystem fuer die felder
-Spieler
+Enthält die kosntanten Attribute
+des Spiels sowie den Game Manager
+--
+&lt;constant string&gt;Spielername1
+&lt;constant string&gt;Spielername2
+&lt;constant string&gt;Karte
+&lt;constant int&gt;Startressourcen
+Pfad zur Karte in XML
+Game Manager
 ---
-Muss tun
-Einheiten bewegen
-Einheiten platzieren
-Spieleressourcen verwalten
--&gt;Units kaufen, einsammeln
-</panel_attributes>
+&lt;Methode&gt; Start Game
+Läuft ab nach Start des Spiels
+Läd das Kartenbild in die GUI
+Setzet die im Leveleditor vorplatzierten
+Einheiten auf die entsprechenden Koordinaten
+Startet den Game Manager in der ersten Setzphase
+des ersten Spielers.
+Setzt die Startressourcen (durch den Game Manager)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>689</x>
-      <y>156</y>
-      <w>130</w>
-      <h>39</h>
-    </coordinates>
-    <panel_attributes>Gamescreen
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>819</x>
-      <y>0</y>
-      <w>130</w>
-      <h>39</h>
-    </coordinates>
-    <panel_attributes>Game</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>819</x>
-      <y>65</y>
-      <w>130</w>
-      <h>39</h>
+      <x>300</x>
+      <y>72</y>
+      <w>156</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>TitleScreen
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>988</x>
-      <y>156</y>
-      <w>169</w>
-      <h>39</h>
-    </coordinates>
-    <panel_attributes>LeveleditorScreen</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>65</x>
-      <y>429</y>
-      <w>260</w>
-      <h>208</h>
-    </coordinates>
-    <panel_attributes>Spieler
 --
-Ressourcen
-</panel_attributes>
+&lt;string&gt; Spielername1
+&lt;string&gt; Spielername2
+(&lt;int&gt; startressourcen)
+--
+&lt;Methode&gt; Map auswählen
+Läd eine map aus Datei aus
+&lt;Methode&gt; Spiel starten
+Startet das Spiel mit der gewählten Map
+und den Spielernamen 
+(sowie den gewählten Startressourcen)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>169</x>
-      <y>962</y>
-      <w>195</w>
-      <h>221</h>
+      <x>1140</x>
+      <y>246</y>
+      <w>108</w>
+      <h>102</h>
     </coordinates>
-    <panel_attributes>SimpleClass
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>793</x>
-      <y>897</y>
-      <w>195</w>
-      <h>234</h>
-    </coordinates>
-    <panel_attributes>Bonus</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1287</x>
-      <y>871</y>
-      <w>234</w>
-      <h>221</h>
-    </coordinates>
-    <panel_attributes>Einheite
+    <panel_attributes>Einheiten
 --
 Zugehörigkeit
+Position
 Typ
 Kosten
-Bewegung
+Bewegungspunkte
 Stärke
-Gold im Besitz?
----&gt;Zurücktragen nötig j/n</panel_attributes>
+Gold im Besitz</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>741</x>
-      <y>637</y>
-      <w>429</w>
-      <h>247</h>
+      <x>408</x>
+      <y>330</y>
+      <w>204</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>Feld
 --
@@ -150,38 +97,134 @@ Wenn angeklickt
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>429</x>
-      <y>637</y>
-      <w>221</w>
-      <h>208</h>
+      <x>72</x>
+      <y>318</y>
+      <w>198</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>Feldtyp
+    <panel_attributes>Attribute für Feldtyp (keine eigene Klasse)
 --
+Blockade = Keine Bewegung hierhin möglich
+Wasser = Normale Bewegung für See
+Straße = Normale Bewegung für Land
+Passage = Langsamme Bewegung (x0.5) für Land 
+			 UND See 
+Offroad = Langsamme Bewegung (x0.5) für Land
+Riff = Langsamme Bewegung (x0.5) für See
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1040</x>
-      <y>338</y>
-      <w>364</w>
-      <h>312</h>
+      <x>786</x>
+      <y>342</y>
+      <w>252</w>
+      <h>210</h>
     </coordinates>
-    <panel_attributes>Bewegung
+    <panel_attributes>Bewegung &lt;Einheit&gt;
 --
-----&gt;Abrufen der Bewgungsreichweite
---Abhängig von:
--Einheit (typ + evtl. boni/mali)
--Feldtypen (hindernisse + bewegungskosten)
--- Sternförmig anzeigen in abh. zu
-----&gt; Bei klcik auf ein anderes Feld 
-als das eigenenin Reichweite
--&gt;Bewegungsreichweite von dort abrufen
-minus der Bewegungskosten dorthin
-----&gt;Bei klick auf das eigene Angriffroutine
--
+Wird aufgerufen wenn ein Feld angeklickt wird
+welches eine Einheit entählt die dem Spieler
+zugehörig ist.
+--
+Zu Beginn Abrufen aus übergebenem &lt;Einheit&gt; Objekt
+-Startfeld
+-Bewegungspunkten + Bewegungsboni der Einheit
+--
+Anzeigen der Reichweite (ohne Berechnung)
+nur Horizontal und Vertikal. 
+(Nach Bewegung neue Brechnung
+am neuen Startpunkt mit verbleibender
+Bewegung.)
+(Wenn Reichweite Berechnet werden soll transfer
+und diversifizierung der entspr. Methode aus
+Bewegen.)
+--
+Bewegen
+Bewegungskosten durch Zählen der bewegten
+Felder unter Einberechnung der Bewegungsmodifikatoren 
+-&gt; Feldtyp, Boni, (Einheitenspezials)
+
+ 
+
+
+
+
+
+
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>264</x>
+      <y>360</y>
+      <w>156</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>240.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>78</y>
+      <w>168</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Game Manager
+--
+Verwaltet Spielphasen, Zugwechsel,
+Ressourcen, Spielende
+--
+Ressourcen Spieler1
+Ressourcen Spieler2
+Spielphase
+aktiver Spieler
+--
+Muss tun (angesteuert aus GUI)
+Einheiten platzieren (Setzphase)
+Einheiten bewegen (Bewegungsphase)
+Spieleressourcen verwalten
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>102</y>
+      <w>222</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>350.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>786</x>
+      <y>114</y>
+      <w>126</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>606</x>
+      <y>384</y>
+      <w>192</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>300.0;110.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
