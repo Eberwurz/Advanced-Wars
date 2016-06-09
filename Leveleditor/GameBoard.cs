@@ -53,9 +53,9 @@ namespace Leveleditor
                 mImageBaseRed = new Bitmap("Images\\IslandRed.png");
                 mImageBaseBlue = new Bitmap("Images\\IslandBlue.png");
                 mImageNormal = new Bitmap("Images\\Wellen50.png");
-                mImageMountain = new Bitmap("Images\\Riff.png");
-                mImageBoost = new Bitmap("Images\\Boost.png");
-                mImageSlow = new Bitmap("Images\\Slow.png");
+                mImageMountain = new Bitmap("Images\\Felsen50.png");
+                mImageBoost = new Bitmap("Images\\Vorspulen50.png");
+                mImageSlow = new Bitmap("Images\\Zurückspulen50.png");
                 mImageRaster = new Bitmap("Images\\GUI\\Gitter.png");
                 mImageRaster.MakeTransparent(Color.White);
                 mImageBoost.MakeTransparent(Color.White);
