@@ -37,7 +37,6 @@ namespace AdvancedWars
         public const int DEFENSE_MOVEMENTMOD = -30;
         public const int DEFENSE_COSTMOD = -30;
         public const int DEFENSE_DAMAGEMOD = -30;
-
-     
     }
+
 }

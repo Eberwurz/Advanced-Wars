@@ -1,0 +1,18 @@
+Spiel:
+
+Spieler1 = lbl_player1name
+Spieler2 = lbl_player2name
+
+Gold = lbl_player(1 oder 2)name
+
+aktiver Spieler = lbl_aktiverSpieler
+
+aktuelle Phase = lbl_Spielphase
+
+
+GameEdit:
+
+Spieler1 = tb_Spieler1
+Spieler2 = tb_Spieler2
+
+Spiel Starten = btn_SpielStarten

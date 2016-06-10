@@ -1,0 +1,12 @@
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\bin\Debug\AdvancedWars.exe
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\bin\Debug\AdvancedWars.pdb
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Properties.Resources.resources
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.csproj.GenerateResource.Cache
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.exe
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.pdb
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.GameEdit.resources
+E:\Wechseldatentraeger\INTENSO\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Game.resources
+E:\Wechseldatentraeger\RENE KLING\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.exe
+E:\Wechseldatentraeger\RENE KLING\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.pdb
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.exe
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.pdb
