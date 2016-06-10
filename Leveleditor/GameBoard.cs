@@ -21,7 +21,7 @@ namespace Leveleditor
         private Bitmap mImageRaster;
 
         private Bitmap mImageNormal;
-        private Bitmap mImageBase;
+        //private Bitmap mImageBase;
         private Bitmap mImageBaseRed;
         private Bitmap mImageBaseBlue;
         private Bitmap mImageMountain;
@@ -49,9 +49,9 @@ namespace Leveleditor
             try
             {
                 mGameBoardImage = new Bitmap(600,500);
-                mImageBase= new Bitmap("Images\\Island.png");
-                mImageBaseRed = new Bitmap("Images\\IslandRed.png");
-                mImageBaseBlue = new Bitmap("Images\\IslandBlue.png");
+                //mImageBase= new Bitmap("Images\\Island.png");
+                mImageBaseRed = new Bitmap("Images\\InselRot50.png");
+                mImageBaseBlue = new Bitmap("Images\\InselBlau50.png");
                 mImageNormal = new Bitmap("Images\\Wellen50.png");
                 mImageMountain = new Bitmap("Images\\Felsen50.png");
                 mImageBoost = new Bitmap("Images\\Vorspulen50.png");
@@ -175,8 +175,8 @@ namespace Leveleditor
                         img = (Bitmap)mImageBaseBlue.Clone();
                     else if (field.Player == GameConstants.PLAYER_RED)
                         img = (Bitmap)mImageBaseRed.Clone();
-                    else
-                        img = (Bitmap)mImageBase.Clone();
+                    //else
+                      //  img = (Bitmap)mImageBase.Clone();
                     boostAvailable = false;
                     break;   
             }

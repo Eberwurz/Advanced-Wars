@@ -137,6 +137,12 @@
     <Content Include="Images\GUI\zurückspulen100.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\InselBlau50.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\InselRot50.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Leben50.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
