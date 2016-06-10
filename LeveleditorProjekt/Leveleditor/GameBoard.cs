@@ -107,7 +107,8 @@ namespace Leveleditor
                     if (y >= 0 && y < mY)
                     {
                         Fields[x, y].CopyValues(selectedField);
-                        if(selectedField.Player != GameConstants.PLAYER_NONE)
+                        if (selectedField.Player != GameConstants.PLAYER_NONE)
+                            Fields[x, y].PowerUp = GameConstants.POWERUP_NONE;
                             setBasePoint(x,y, selectedField.Player);
                         updateGameBoardImage(mFields[x, y], x, y);
                         success = true;
@@ -227,7 +228,7 @@ namespace Leveleditor
                 //XMLPart
                 xmlWriter writer = new xmlWriter(directoryPath);
                 writer.WriteXMLFile(mFields, name);
-            }catch(Exception ex)
+            }catch(Exception)
             {
                 success = false;
             }

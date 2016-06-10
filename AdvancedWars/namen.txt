@@ -10,6 +10,13 @@ aktiver Spieler = lbl_aktiverSpieler
 aktuelle Phase = lbl_Spielphase
 
 
+Normales Schiff = pic_normal
+Dickes Schiff = pic_big
+Verteidiger Schiff = pic_defense
+Transporter = pic_transport
+
+Spielbrett = pic_GameField
+
 GameEdit:
 
 Spieler1 = tb_Spieler1

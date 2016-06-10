@@ -60,7 +60,7 @@
             // lbl_map
             // 
             this.lbl_map.AutoSize = true;
-            this.lbl_map.Location = new System.Drawing.Point(20, 133);
+            this.lbl_map.Location = new System.Drawing.Point(13, 120);
             this.lbl_map.Name = "lbl_map";
             this.lbl_map.Size = new System.Drawing.Size(31, 13);
             this.lbl_map.TabIndex = 2;
@@ -82,7 +82,7 @@
             // 
             // btn_SpielStarten
             // 
-            this.btn_SpielStarten.Location = new System.Drawing.Point(243, 229);
+            this.btn_SpielStarten.Location = new System.Drawing.Point(261, 167);
             this.btn_SpielStarten.Name = "btn_SpielStarten";
             this.btn_SpielStarten.Size = new System.Drawing.Size(114, 48);
             this.btn_SpielStarten.TabIndex = 5;
@@ -92,18 +92,17 @@
             // 
             // lbl_MapPfad
             // 
-            this.lbl_MapPfad.Location = new System.Drawing.Point(74, 133);
+            this.lbl_MapPfad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_MapPfad.Location = new System.Drawing.Point(76, 115);
             this.lbl_MapPfad.Name = "lbl_MapPfad";
-            this.lbl_MapPfad.Size = new System.Drawing.Size(87, 13);
+            this.lbl_MapPfad.Size = new System.Drawing.Size(87, 20);
             this.lbl_MapPfad.TabIndex = 6;
-            this.lbl_MapPfad.Text = "PfadVonMap";
-            this.lbl_MapPfad.Click += new System.EventHandler(this.lbl_MapPfad_Click);
             // 
             // btn_MapAufrufen
             // 
-            this.btn_MapAufrufen.Location = new System.Drawing.Point(169, 122);
+            this.btn_MapAufrufen.Location = new System.Drawing.Point(185, 105);
             this.btn_MapAufrufen.Name = "btn_MapAufrufen";
-            this.btn_MapAufrufen.Size = new System.Drawing.Size(73, 34);
+            this.btn_MapAufrufen.Size = new System.Drawing.Size(73, 42);
             this.btn_MapAufrufen.TabIndex = 7;
             this.btn_MapAufrufen.Text = "Map auswählen";
             this.btn_MapAufrufen.UseVisualStyleBackColor = true;
@@ -111,17 +110,17 @@
             // 
             // lbl_Log
             // 
-            this.lbl_Log.AutoSize = true;
-            this.lbl_Log.Location = new System.Drawing.Point(74, 247);
+            this.lbl_Log.Location = new System.Drawing.Point(20, 167);
             this.lbl_Log.Name = "lbl_Log";
-            this.lbl_Log.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Log.Size = new System.Drawing.Size(222, 48);
             this.lbl_Log.TabIndex = 8;
+            this.lbl_Log.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GameEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 308);
+            this.ClientSize = new System.Drawing.Size(384, 261);
             this.Controls.Add(this.lbl_Log);
             this.Controls.Add(this.btn_MapAufrufen);
             this.Controls.Add(this.lbl_MapPfad);
@@ -132,9 +131,9 @@
             this.Controls.Add(this.lbl_Spieler2);
             this.Controls.Add(this.lbl_Spieler1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(403, 346);
+            this.MaximumSize = new System.Drawing.Size(403, 350);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(403, 346);
+            this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "GameEdit";
             this.Text = "Spiel einrichten";
             this.ResumeLayout(false);

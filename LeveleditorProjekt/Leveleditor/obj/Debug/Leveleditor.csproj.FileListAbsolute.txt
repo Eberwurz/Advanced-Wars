@@ -83,7 +83,6 @@ C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\Leveleditor\bin\Debug
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\bin\Debug\Leveleditor.exe.config
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\obj\Debug\Leveleditor.exe
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\obj\Debug\Leveleditor.pdb
-C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\obj\Debug\Leveleditor.csprojResolveAssemblyReference.cache
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\obj\Debug\Leveleditor.Form1.resources
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\obj\Debug\Leveleditor.Properties.Resources.resources
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\obj\Debug\Leveleditor.csproj.GenerateResource.Cache
@@ -113,3 +112,4 @@ C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Le
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\bin\Debug\Images\zurückspulen50.png
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\bin\Debug\Leveleditor.exe
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\bin\Debug\Leveleditor.pdb
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\LeveleditorProjekt\Leveleditor\obj\Debug\Leveleditor.csprojResolveAssemblyReference.cache
