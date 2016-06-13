@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Field.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="Images.cs" />
     <Compile Include="Optionen.cs">
       <SubType>Form</SubType>

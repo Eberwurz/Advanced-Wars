@@ -11,43 +11,40 @@ namespace AdvancedWars
 {
     public partial class Game : Form
     {
-        private Field[,] mFields;
-        private Player mPlayerRed;
-        private Player mPlayerBlue;
-        private Bitmap mGameBoard;
-        private Player mActivePlayer;
-        private int mActivePhase;
+        GameManager mGameManager;
 
         public Game(Bitmap GameBoard, Field[,] fields, String pRedName, String pBlueName)
         {
             InitializeComponent();
-            mFields = fields;
-            mGameBoard = GameBoard;
-            mPlayerRed = new Player(pRedName, Color.Red);
-            mPlayerBlue = new Player(pBlueName, Color.Blue);           
-            initializeGame();           
+            mGameManager = new GameManager(GameBoard, fields, pRedName, pBlueName);            
+            initializeGameUI();
+            mGameManager.ActivePlayerChanged += new ActivePlayerChangedHandler(onActivePlayerChanged);
         }
 
-        //Nanem und Gold setzen, Aktiver Spieler bestimmen, Bilder setzen.
-        private void initializeGame()
+        private void onActivePlayerChanged()
         {
-            pic_GameField.Image = mGameBoard;
-            lbl_player1name.Text = mPlayerRed.Name;
-            lbl_player2name.Text = mPlayerBlue.Name;
-            lbl_player1gold.Text = mPlayerRed.Gold.ToString();
-            lbl_player2gold.Text = mPlayerBlue.Gold.ToString();
+            setActivePlayerUI();
+        }
+
+        private void initializeGameUI()
+        {
+            pic_GameField.Image = mGameManager.GameBoard;
+            lbl_player1name.Text = mGameManager.PlayerRed.Name;
+            lbl_player2name.Text = mGameManager.PlayerBlue.Name;
+            lbl_player1gold.Text = mGameManager.PlayerRed.Gold.ToString();
+            lbl_player2gold.Text = mGameManager.PlayerBlue.Gold.ToString();
             lbl_StandartPrize.Text = GameConstants.SHIP_COST.ToString();
             lbl_DefenderPrice.Text = (GameConstants.SHIP_COST + GameConstants.DEFENSE_COSTMOD).ToString();
             lbl_TransPrice.Text = (GameConstants.SHIP_COST + GameConstants.TRANSPORTER_COSTMOD).ToString();
             lbl_BigPrize.Text = (GameConstants.SHIP_COST + GameConstants.BIGSHIP_COSTMOD).ToString();
-            setActivePlayer(mPlayerRed);
-            setPhase(GameConstants.PHASE_SET);
+            setActivePlayerUI();
+            setActivePhaseUI();
         }
 
-        private void setPhase(int phase)
+        private void setActivePhaseUI()
         {
-            mActivePhase = phase;
-            switch(phase)
+            int phase = mGameManager.ActivePhase;
+            switch (phase)
             {
                 case GameConstants.PHASE_SET:
                     lbl_Spielphase.Text = "Bauphase";
@@ -61,10 +58,10 @@ namespace AdvancedWars
             }
         }
 
-        private void setActivePlayer(Player player)
+        private void setActivePlayerUI()
         {
-            mActivePlayer = player;
-            if (player == mPlayerRed)
+            Player activePlayer = mGameManager.ActivePlayer;
+            if (activePlayer.Color == Color.Red)
             {
                 pic_normal.Image = Images.Instance.GetImage(Images.TYPE_STANDART_RED_100);
                 pic_big.Image = Images.Instance.GetImage(Images.TYPE_BIGSHIP_RED_100);
@@ -78,7 +75,7 @@ namespace AdvancedWars
                 pic_defense.Image = Images.Instance.GetImage(Images.TYPE_DEFENSESHIP_BLUE_100);
                 pic_transport.Image = Images.Instance.GetImage(Images.TYPE_TRANSPORTER_BLUE_100);
             }
-            lbl_aktiverSpieler.Text = player.Name; 
+            lbl_aktiverSpieler.Text = activePlayer.Name; 
         }
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
@@ -88,8 +85,8 @@ namespace AdvancedWars
 
         private void btn_next_Click(object sender, EventArgs e)
         {
-            mActivePhase++;
-            mActivePhase %= 3;
+            mGameManager.nextPhase();
+            setActivePhaseUI();
         }
 
     }
