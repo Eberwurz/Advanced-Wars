@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
-            this.pic_GameField = new System.Windows.Forms.PictureBox();
             this.lbl_player1name = new System.Windows.Forms.Label();
             this.lbl_player1gold = new System.Windows.Forms.Label();
             this.lbl_player2name = new System.Windows.Forms.Label();
@@ -62,7 +61,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_GameField)).BeginInit();
+            this.pic_GameField = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pic_normal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_defense)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_big)).BeginInit();
@@ -71,15 +70,6 @@
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pic_GameField
-            // 
-            this.pic_GameField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pic_GameField.Location = new System.Drawing.Point(300, 50);
-            this.pic_GameField.Name = "pic_GameField";
-            this.pic_GameField.Size = new System.Drawing.Size(600, 500);
-            this.pic_GameField.TabIndex = 0;
-            this.pic_GameField.TabStop = false;
             // 
             // lbl_player1name
             // 
@@ -175,6 +165,7 @@
             this.pic_normal.Size = new System.Drawing.Size(104, 104);
             this.pic_normal.TabIndex = 1;
             this.pic_normal.TabStop = false;
+            this.pic_normal.Click += new System.EventHandler(this.onShipClick);
             // 
             // pic_defense
             // 
@@ -186,6 +177,7 @@
             this.pic_defense.Size = new System.Drawing.Size(104, 104);
             this.pic_defense.TabIndex = 2;
             this.pic_defense.TabStop = false;
+            this.pic_defense.Click += new System.EventHandler(this.onShipClick);
             // 
             // pic_big
             // 
@@ -197,6 +189,7 @@
             this.pic_big.Size = new System.Drawing.Size(104, 104);
             this.pic_big.TabIndex = 3;
             this.pic_big.TabStop = false;
+            this.pic_big.Click += new System.EventHandler(this.onShipClick);
             // 
             // pic_transport
             // 
@@ -208,6 +201,7 @@
             this.pic_transport.Size = new System.Drawing.Size(104, 104);
             this.pic_transport.TabIndex = 4;
             this.pic_transport.TabStop = false;
+            this.pic_transport.Click += new System.EventHandler(this.onShipClick);
             // 
             // label4
             // 
@@ -397,11 +391,22 @@
             this.label22.TabIndex = 9;
             this.label22.Text = "Gold:";
             // 
+            // pic_GameField
+            // 
+            this.pic_GameField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pic_GameField.Location = new System.Drawing.Point(300, 50);
+            this.pic_GameField.Name = "pic_GameField";
+            this.pic_GameField.Size = new System.Drawing.Size(600, 500);
+            this.pic_GameField.TabIndex = 32;
+            this.pic_GameField.Click += new System.EventHandler(this.pic_GameField_Click);
+            this.pic_GameField.Paint += new System.Windows.Forms.PaintEventHandler(this.pic_GameField_Paint);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.Controls.Add(this.pic_GameField);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label11);
@@ -422,7 +427,6 @@
             this.Controls.Add(this.pic_big);
             this.Controls.Add(this.pic_defense);
             this.Controls.Add(this.pic_normal);
-            this.Controls.Add(this.pic_GameField);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1200, 800);
             this.MinimizeBox = false;
@@ -430,7 +434,6 @@
             this.Name = "Game";
             this.Text = "Advanced Wars";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.pic_GameField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_normal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_defense)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_big)).EndInit();
@@ -446,8 +449,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pic_GameField;
         private System.Windows.Forms.Label lbl_player1name;
         private System.Windows.Forms.Label lbl_player1gold;
         private System.Windows.Forms.Label lbl_player2name;
@@ -480,5 +481,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Panel pic_GameField;
     }
 }

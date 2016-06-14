@@ -37,6 +37,18 @@ namespace AdvancedWars
         public const int PHASE_SET = 0;
         public const int PHASE_MOVE = 1;
         public const int PHASE_FIGHT = 2;
+
+        public const string PLAYER_RED = "red";
+        public const string PLAYER_BLUE = "blue";
+        public const string PLAYER_NONE = "";
+
+        public const string FIELDTYPE_NORMAL = "normal";
+        public const string FIELDTYPE_BASE = "base";
+        public const string FIELDTYPE_BLOCKADE = "blockade";
+
+        public const int GAMEFIELD_WIDTH = 600;
+        public const int GAMEFIELD_HEIGHT = 500;
+        public const int GAMEFIELD_TILESIZE = 50;
     }
 
 }

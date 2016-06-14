@@ -14,9 +14,12 @@ namespace AdvancedWars
         private Player mPlayerBlue;
         private Bitmap mGameBoard;
         private Player mActivePlayer;
+        private Point mRedBasePoint;
+        private Point mBlueBasePoint;
         private int mActivePhase;
         public event ActivePlayerChangedHandler ActivePlayerChanged;
 
+        //Gib den aktiven Spieler zurück
         public Player ActivePlayer
         {
             get
@@ -25,6 +28,7 @@ namespace AdvancedWars
             }
         }
 
+        //Gib Spielfeld zurück
         public Bitmap GameBoard
         {
             get
@@ -33,16 +37,31 @@ namespace AdvancedWars
             }
         }
 
+        //Aktive Base zurückgeben
+        public Point ActivePlayerBase
+        {
+            get
+            {
+                Point point = mRedBasePoint;
+                if (ActivePlayer == mPlayerBlue)
+                    point = mBlueBasePoint;
+                return point;
+            }
+        }
+
+        //Gib den roten Spieler zurück
         public Player PlayerRed
         {
             get { return mPlayerRed; }
         }
 
+        //Gib den blauen Spieler zurück
         public Player PlayerBlue
         {
             get { return mPlayerBlue; }
         }
 
+        //Konstruktor. Initialisiert Variabeln
         public GameManager(Bitmap GameBoard, Field[,] fields, String pRedName, String pBlueName)
         {
             mFields = fields;
@@ -50,14 +69,37 @@ namespace AdvancedWars
             mPlayerRed = new Player(pRedName, Color.Red);
             mPlayerBlue = new Player(pBlueName, Color.Blue);
             mActivePlayer = mPlayerRed;
-            mActivePhase = GameConstants.PHASE_SET;           
+            mActivePhase = GameConstants.PHASE_SET;
+            getBasePoints();        
         }
 
+        private void getBasePoints()
+        {
+            for (int y = 0; y < mFields.GetLength(1); y++)
+            {
+                for (int x = 0; x < mFields.GetLength(0); x++)
+                {
+                    if (mFields[x,y] != null)
+                    {
+                        if (mFields[x, y].Type == GameConstants.FIELDTYPE_BASE)
+                        {
+                            if (mFields[x, y].Player == GameConstants.PLAYER_RED)
+                                mRedBasePoint = new Point(x * GameConstants.GAMEFIELD_TILESIZE, y * GameConstants.GAMEFIELD_TILESIZE);
+                            else if (mFields[x, y].Player == GameConstants.PLAYER_BLUE)
+                                mBlueBasePoint = new Point(x * GameConstants.GAMEFIELD_TILESIZE, y * GameConstants.GAMEFIELD_TILESIZE);
+                        }
+                    }
+                }
+            }
+        }
+
+        //Gibt aktive Phase zurück
         public int ActivePhase
         {
             get { return mActivePhase; }
         }
 
+        //Wechsle die Phase
         internal void nextPhase()
         {
             mActivePhase++;

@@ -49,8 +49,8 @@ namespace AdvancedWars
                 XmlNode gameField = doc.SelectSingleNode("/GameField");
                 mMapName = gameField.Attributes.GetNamedItem("Name").InnerText;
                 XmlNode size = doc.SelectSingleNode("/GameField/Size");
-                int x = Convert.ToInt32(size.Attributes.GetNamedItem("Columns").InnerText);
-                int y = Convert.ToInt32(size.Attributes.GetNamedItem("Rows").InnerText);
+                int y = Convert.ToInt32(size.Attributes.GetNamedItem("Columns").InnerText);
+                int x = Convert.ToInt32(size.Attributes.GetNamedItem("Rows").InnerText);
                 mFields = new Field[x, y];
                 XmlNode fields = doc.SelectSingleNode("/GameField/Fields");
                 int acX = 0;
@@ -60,11 +60,11 @@ namespace AdvancedWars
                     if (child.LocalName == "Field")
                     {
                         mFields[acX, acY] = new Field(child.Attributes.GetNamedItem("Type").InnerText, child.Attributes.GetNamedItem("PowerUps").InnerText, child.Attributes.GetNamedItem("Player").InnerText);
-                        acY++;
-                        if (acY == y)
+                        acX++;
+                        if (acX == x)
                         {
-                            acY = 0;
-                            acX++;
+                            acX = 0;
+                            acY++;
                         }
                     }
                 }
