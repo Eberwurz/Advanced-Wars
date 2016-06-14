@@ -11,9 +11,11 @@ namespace AdvancedWars
         private int mHealth;
         private int mCost;
         private int mMovement;
+        private string mName;
 
         public Type(string type)
         {
+            mName = type;
             mDamage = GameConstants.SHIP_DAMAGE;  
             mHealth = GameConstants.SHIP_HEALTH;       
             mCost = GameConstants.SHIP_COST;
@@ -41,6 +43,11 @@ namespace AdvancedWars
                 mCost+= GameConstants.TRANSPORTER_COSTMOD;
                 mMovement+=GameConstants.TRANSPORTER_MOVEMENTMOD;
             }
+        }
+
+        public string Name
+        {
+            get { return mName; }
         }
 
         public int Damage

@@ -16,6 +16,7 @@ namespace AdvancedWars
         private bool mClearDraw;
         private Ship mActivatedShip;
 
+        //Konstruktor
         public Game(Bitmap GameBoard, Field[,] fields, String pRedName, String pBlueName)
         {
             InitializeComponent();
@@ -27,18 +28,18 @@ namespace AdvancedWars
             mActivatedShip = null;
         }
 
+        //Event, dass vom GameManager geworfen wird, wenn der aktuelle Spieler wechselt.
         private void onActivePlayerChanged()
         {
             setActivePlayerUI();
         }
 
+        //Initialisiert das User Interface
         private void initializeGameUI()
         {
-            pic_GameField.BackgroundImage = mGameManager.GameBoard;
             lbl_player1name.Text = mGameManager.PlayerRed.Name;
             lbl_player2name.Text = mGameManager.PlayerBlue.Name;
-            lbl_player1gold.Text = mGameManager.PlayerRed.Gold.ToString();
-            lbl_player2gold.Text = mGameManager.PlayerBlue.Gold.ToString();
+            updateUI();
             lbl_StandartPrize.Text = GameConstants.SHIP_COST.ToString();
             lbl_DefenderPrice.Text = (GameConstants.SHIP_COST + GameConstants.DEFENSE_COSTMOD).ToString();
             lbl_TransPrice.Text = (GameConstants.SHIP_COST + GameConstants.TRANSPORTER_COSTMOD).ToString();
@@ -48,6 +49,16 @@ namespace AdvancedWars
             pic_GameField.Refresh();
         }
 
+        //Updated das Spielbrett und die Goldanzeige.
+        private void updateUI()
+        {
+            pic_GameField.BackgroundImage = mGameManager.GameBoard;
+            lbl_player1gold.Text = mGameManager.PlayerRed.Gold.ToString();
+            lbl_player2gold.Text = mGameManager.PlayerBlue.Gold.ToString();
+            pic_GameField.Refresh();
+        }
+
+        //Aktualisiert das User Interface für die aktuelle Phase,
         private void setActivePhaseUI()
         {
             int phase = mGameManager.ActivePhase;
@@ -65,6 +76,7 @@ namespace AdvancedWars
             }
         }
 
+        //Aktualisiert das User Interface für den aktuellen Spieler
         private void setActivePlayerUI()
         {
             Player activePlayer = mGameManager.ActivePlayer;
@@ -85,11 +97,13 @@ namespace AdvancedWars
             lbl_aktiverSpieler.Text = activePlayer.Name; 
         }
 
+        //Programm beenden
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
+        //Phasenwechsel
         private void btn_next_Click(object sender, EventArgs e)
         {
             mGameManager.nextPhase();
@@ -97,12 +111,13 @@ namespace AdvancedWars
             pic_GameField.Refresh();
         }
 
+        //Bei Klick auf ein Schiff wird das aktivierte Schiff gesetzt
         private void onShipClick(object sender, EventArgs e)
         {
             PictureBox selected = sender as PictureBox;
             if (selected != null)
             {
-                setSelectedShip(selected);
+                setSelectedShipBorder(selected);
                 switch(selected.Name)
                 {
                     case "pic_normal":
@@ -124,7 +139,8 @@ namespace AdvancedWars
             }
         }
 
-        private void setSelectedShip(PictureBox selected)
+        //Aktualisiert den Border des ausgewählten Schiffes.
+        private void setSelectedShipBorder(PictureBox selected)
         {
             foreach (PictureBox pic in imgShips)
             {
@@ -138,6 +154,7 @@ namespace AdvancedWars
             }
         }
 
+        //Paint Event für das Spielbrettpanel
         private void pic_GameField_Paint(object sender, PaintEventArgs e)
         {
             if(!mClearDraw)
@@ -151,32 +168,46 @@ namespace AdvancedWars
             }
         }
 
+        //Makiert Bereiche, in denen Figueren gesetzt werden können.
         private void setBuildingGraphicalArea(Graphics g)
         {
-            Point basePoint = mGameManager.ActivePlayerBase;
-            Color color = Color.FromArgb(100,mGameManager.ActivePlayer.Color);
-            for (int x= basePoint.X - GameConstants.GAMEFIELD_TILESIZE; x<= basePoint.X + GameConstants.GAMEFIELD_TILESIZE; x= x+ GameConstants.GAMEFIELD_TILESIZE)
+            Point[] points = mGameManager.ActivePlaySpawnAreaPoints;
+            SolidBrush brush = new SolidBrush(Color.FromArgb(100, mGameManager.ActivePlayer.Color));
+            foreach(Point p in points)
             {
-                for (int y = basePoint.Y - GameConstants.GAMEFIELD_TILESIZE; y <= basePoint.Y + GameConstants.GAMEFIELD_TILESIZE; y = y + GameConstants.GAMEFIELD_TILESIZE)
-                {
-                    if (x >= 0 && x < GameConstants.GAMEFIELD_WIDTH - GameConstants.GAMEFIELD_TILESIZE)
+                Rectangle rec = new Rectangle(p.X * GameConstants.GAMEFIELD_TILESIZE, 
+                    p.Y * GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
+                g.FillRectangle(brush, rec);
+            }          
+        }
+
+        //Führt Aktion aus, wenn auf das Spielfeld geklickt wird.
+        private void pic_GameField_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs me = e as MouseEventArgs;
+            int x = me.X / GameConstants.GAMEFIELD_TILESIZE;
+            int y = me.Y / GameConstants.GAMEFIELD_TILESIZE;
+            switch (mGameManager.ActivePhase)
+            {
+                case GameConstants.PHASE_SET:
+                    if (mActivatedShip != null)
                     {
-                        if (y >= 0 && y < GameConstants.GAMEFIELD_HEIGHT - GameConstants.GAMEFIELD_TILESIZE)
-                        {
-                            if (basePoint.X != x || basePoint.Y != y)
-                            {
-                                SolidBrush brush = new SolidBrush(color);
-                                g.FillRectangle(brush, new Rectangle(x, y, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE));
-                            }                        
+                       lbl_Log.Text = "";
+                       if (!mGameManager.TrySetShip(mActivatedShip,x,y))
+                       {
+                            lbl_Log.Text = "Schiff konnte nicht gesetzt werden";
+                       }else
+                        {                       
+                            updateUI();
                         }
                     }
-                }
+                    break;
+                case GameConstants.PHASE_MOVE:
+                    break;
+                case GameConstants.PHASE_FIGHT:
+                    break;
             }
         }
 
-        private void pic_GameField_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -11,6 +11,46 @@ namespace AdvancedWars
         private String mType;
         private String mPowerUp;
         private String mPlayer;
+        private Ship mShip;
+        private int mGold;
+
+        //Konstruktoren
+        public Field(string type)
+        {
+            mType = type;
+            mPowerUp = GameConstants.POWERUP_NONE;
+            mPlayer = GameConstants.PLAYER_NONE;
+            mShip = null;
+        }
+        public Field(string type, string bonus)
+        {
+            mType = type;
+            mPowerUp = bonus;
+            mPlayer = GameConstants.PLAYER_NONE;
+            mShip = null;
+            mGold = 0;
+        }
+        public Field(string type, string bonus, string player)
+        {
+            mType = type;
+            mPowerUp = bonus;
+            mPlayer = player;
+            mShip = null;
+            mGold = 0;
+        }
+
+        public int Gold
+        {
+            get
+            {
+                return mGold;
+            }
+            set
+            {
+                mGold = value;
+            }
+        }
+
         public string Player
         {
             get
@@ -33,6 +73,17 @@ namespace AdvancedWars
                 mType = value;
             }
         }
+        public Ship Ship
+        {
+            get
+            {
+                return mShip;
+            }
+            set
+            {
+                mShip = value;
+            }
+        }
         public string PowerUp
         {
             get
@@ -44,30 +95,14 @@ namespace AdvancedWars
                 mPowerUp = value;
             }
         }
-        public Field(string type)
-        {
-            mType = type;
-            //mPowerUp = GameConstants.POWERUP_NONE;
-            //mPlayer = GameConstants.PLAYER_NONE;
-        }
-        public Field(string type, string bonus)
-        {
-            mType = type;
-            //mPowerUp = bonus;
-            //mPlayer = GameConstants.PLAYER_NONE;
-        }
-        public Field(string type, string bonus, string player)
-        {
-            mType = type;
-            mPowerUp = bonus;
-            mPlayer = player;
-        }
-
+        //Kopiermethode
         public void CopyValues(Field field)
         {
             mType = field.mType;
             mPlayer = field.mPlayer;
             mPowerUp = field.mPowerUp;
+            mShip = null;
+            mGold = 0;
         }
     }
 }

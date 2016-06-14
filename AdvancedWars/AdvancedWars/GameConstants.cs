@@ -49,6 +49,10 @@ namespace AdvancedWars
         public const int GAMEFIELD_WIDTH = 600;
         public const int GAMEFIELD_HEIGHT = 500;
         public const int GAMEFIELD_TILESIZE = 50;
+
+        public const string POWERUP_NONE = "";
+        public const string POWERUP_SPEED = "speed";
+        public const string POWERUP_SLOW = "slow";
     }
 
 }

@@ -62,6 +62,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.pic_GameField = new System.Windows.Forms.Panel();
+            this.lbl_Log = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic_normal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_defense)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_big)).BeginInit();
@@ -289,7 +290,7 @@
             // 
             this.lbl_BigPrize.AutoSize = true;
             this.lbl_BigPrize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_BigPrize.Location = new System.Drawing.Point(168, 360);
+            this.lbl_BigPrize.Location = new System.Drawing.Point(168, 476);
             this.lbl_BigPrize.Name = "lbl_BigPrize";
             this.lbl_BigPrize.Size = new System.Drawing.Size(111, 25);
             this.lbl_BigPrize.TabIndex = 25;
@@ -299,7 +300,7 @@
             // 
             this.lbl_DefenderPrice.AutoSize = true;
             this.lbl_DefenderPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_DefenderPrice.Location = new System.Drawing.Point(168, 476);
+            this.lbl_DefenderPrice.Location = new System.Drawing.Point(168, 360);
             this.lbl_DefenderPrice.Name = "lbl_DefenderPrice";
             this.lbl_DefenderPrice.Size = new System.Drawing.Size(111, 25);
             this.lbl_DefenderPrice.TabIndex = 26;
@@ -401,18 +402,27 @@
             this.pic_GameField.Click += new System.EventHandler(this.pic_GameField_Click);
             this.pic_GameField.Paint += new System.Windows.Forms.PaintEventHandler(this.pic_GameField_Paint);
             // 
+            // lbl_Log
+            // 
+            this.lbl_Log.AutoSize = true;
+            this.lbl_Log.Location = new System.Drawing.Point(30, 712);
+            this.lbl_Log.Name = "lbl_Log";
+            this.lbl_Log.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Log.TabIndex = 33;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.Controls.Add(this.lbl_BigPrize);
+            this.Controls.Add(this.lbl_Log);
             this.Controls.Add(this.pic_GameField);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_DefenderPrice);
-            this.Controls.Add(this.lbl_BigPrize);
             this.Controls.Add(this.lbl_StandartPrize);
             this.Controls.Add(this.lbl_TransPrice);
             this.Controls.Add(this.label10);
@@ -482,5 +492,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel pic_GameField;
+        private System.Windows.Forms.Label lbl_Log;
     }
 }

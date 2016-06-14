@@ -5,15 +5,22 @@ using System.Text;
 
 namespace AdvancedWars
 {
-    class Ship
+    public class Ship
     {
         public Ship(Type Type) 
         {
             mType = Type;
             mGold = Type.Cost;
         }
-        public Type mType;
-        public int mGold;
+        private Type mType;
+        private int mGold;
+        private bool mIsMoveable;
+
+        public bool IsMoveable
+        {
+            get { return mIsMoveable; }
+            set { mIsMoveable = value; }
+        }
 
         public int Gold
         {
@@ -24,6 +31,14 @@ namespace AdvancedWars
         public Type Type
         {
             get { return mType; }
+        }
+
+        //Klonmethode
+        public void clone(Ship ship)
+        {
+            mType = ship.mType;
+            mGold = ship.mGold;
+            mIsMoveable = false;
         }
 
 
