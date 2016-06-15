@@ -18,21 +18,25 @@ namespace AdvancedWars
         public const int SHIP_MOVEMENT = 4;
         public const int SHIP_COST = 25;
         public const int SHIP_DAMAGE = 50;
+        public const int SHIP_RADIUS = 2;
 
         public const int BIGSHIP_HEALTHMOD = 10;
         public const int BIGSHIP_MOVEMENTMOD = -2;
         public const int BIGSHIP_COSTMOD = 15;
         public const int BIGSHIP_DAMAGEMOD = 50;
+        public const int BIGSHIP_RADIUSMOD = -1;
 
         public const int TRANSPORTER_HEALTHMOD = -40;
         public const int TRANSPORTER_MOVEMENTMOD = 2;
         public const int TRANSPORTER_COSTMOD = -10;
         public const int TRANSPORTER_DAMAGEMOD = -50;
+        public const int TRANSPORTER_RADIUSMOD = -2;
 
         public const int DEFENSE_HEALTHMOD = 50;
         public const int DEFENSE_MOVEMENTMOD = -3;
         public const int DEFENSE_COSTMOD = 20;
         public const int DEFENSE_DAMAGEMOD = -20;
+        public const int DEFENSE_RADIUSMOD = 1;
 
         public const int PHASE_SET = 0;
         public const int PHASE_MOVE = 1;

@@ -12,6 +12,7 @@ namespace AdvancedWars
         private int mCost;
         private int mMovement;
         private string mName;
+        private int mRadius;
 
         public Type(string type)
         {
@@ -20,12 +21,14 @@ namespace AdvancedWars
             mHealth = GameConstants.SHIP_HEALTH;       
             mCost = GameConstants.SHIP_COST;
             mMovement = GameConstants.SHIP_MOVEMENT;
+            mRadius = GameConstants.SHIP_RADIUS;
             if (type == GameConstants.TYPE_BIGSHIP)
             {
                 mDamage += GameConstants.BIGSHIP_DAMAGEMOD;
                 mHealth += GameConstants.BIGSHIP_HEALTHMOD;
                 mCost += GameConstants.BIGSHIP_COSTMOD;
                 mMovement += GameConstants.BIGSHIP_MOVEMENTMOD;
+                mRadius = GameConstants.BIGSHIP_RADIUSMOD;
             }
 
             if (type == GameConstants.TYPE_DEFENSESHIP)
@@ -34,6 +37,7 @@ namespace AdvancedWars
                 mHealth += GameConstants.DEFENSE_HEALTHMOD;
                 mCost += GameConstants.DEFENSE_COSTMOD;
                 mMovement += GameConstants.DEFENSE_MOVEMENTMOD;
+                mRadius = GameConstants.DEFENSE_RADIUSMOD;
             }
 
             if (type == GameConstants.TYPE_TRANSPORTER)
@@ -42,6 +46,7 @@ namespace AdvancedWars
                 mHealth+=GameConstants.TRANSPORTER_HEALTHMOD;
                 mCost+= GameConstants.TRANSPORTER_COSTMOD;
                 mMovement+=GameConstants.TRANSPORTER_MOVEMENTMOD;
+                mRadius = GameConstants.TRANSPORTER_RADIUSMOD;
             }
         }
 
@@ -54,6 +59,11 @@ namespace AdvancedWars
         {
             get { return mDamage; }
            
+        }
+        public int Radius
+        {
+            get { return mRadius; }
+
         }
 
         public int Health

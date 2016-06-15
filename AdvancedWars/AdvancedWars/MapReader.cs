@@ -39,6 +39,7 @@ namespace AdvancedWars
             mBitmapName = "\\GameBoard.bmp";
         }
 
+        //Läd das XML aus dem Verzeichnis. Gibt bei Erfolg true zurück
         public bool TryLoadXMLFromPath()
         {
             bool success = true;
@@ -77,6 +78,7 @@ namespace AdvancedWars
             return success;
         }
 
+        //Läd die Bitmap im Verzeichnis. Gib bei Erfolg true zurück
         public bool TryLoadBitmap()
         {
             bool success = true;

@@ -7,14 +7,22 @@ namespace AdvancedWars
 {
     public class Ship
     {
-        public Ship(Type Type) 
+        public Ship(Type Type,Player player) 
         {
             mType = Type;
             mGold = Type.Cost;
+            mIsMoveable = false;
+            mControllingPlayer = player;
         }
         private Type mType;
         private int mGold;
         private bool mIsMoveable;
+        private Player mControllingPlayer; 
+
+        public Player ControllingPlayer
+        {
+            get { return ControllingPlayer; }
+        }
 
         public bool IsMoveable
         {

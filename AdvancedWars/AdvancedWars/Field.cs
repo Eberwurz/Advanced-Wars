@@ -12,7 +12,7 @@ namespace AdvancedWars
         private String mPowerUp;
         private String mPlayer;
         private Ship mShip;
-        private int mGold;
+        private int mPowerUpValue;
 
         //Konstruktoren
         public Field(string type)
@@ -21,6 +21,7 @@ namespace AdvancedWars
             mPowerUp = GameConstants.POWERUP_NONE;
             mPlayer = GameConstants.PLAYER_NONE;
             mShip = null;
+            mPowerUpValue = 0;
         }
         public Field(string type, string bonus)
         {
@@ -28,7 +29,7 @@ namespace AdvancedWars
             mPowerUp = bonus;
             mPlayer = GameConstants.PLAYER_NONE;
             mShip = null;
-            mGold = 0;
+            mPowerUpValue = 0;
         }
         public Field(string type, string bonus, string player)
         {
@@ -36,18 +37,18 @@ namespace AdvancedWars
             mPowerUp = bonus;
             mPlayer = player;
             mShip = null;
-            mGold = 0;
+            mPowerUpValue = 0;
         }
 
-        public int Gold
+        public int PowerUpValue
         {
             get
             {
-                return mGold;
+                return mPowerUpValue;
             }
             set
             {
-                mGold = value;
+                mPowerUpValue = value;
             }
         }
 
@@ -101,8 +102,8 @@ namespace AdvancedWars
             mType = field.mType;
             mPlayer = field.mPlayer;
             mPowerUp = field.mPowerUp;
-            mShip = null;
-            mGold = 0;
+            mShip = field.mShip;
+            mPowerUpValue = field.mPowerUpValue;
         }
     }
 }

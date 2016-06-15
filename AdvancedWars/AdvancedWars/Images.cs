@@ -6,6 +6,8 @@ using System.Text;
 
 namespace AdvancedWars
 {
+
+    //Singleton Klasse zum Abrufen der Schiff Bilder
     public class Images
     {
         private static readonly Images s_Instance = new Images();
@@ -28,8 +30,12 @@ namespace AdvancedWars
         public const int TYPE_TRANSPORTER_BLUE_100 = 13;
         public const int TYPE_DEFENSESHIP_BLUE_100 = 14;
         public const int TYPE_STANDART_BLUE_100 = 15;
+        public const int TYPE_POWERUP_COIN = 16;
+        public const int TYPE_POWERUP_HEALTH = 17;
+        public const int TYPE_POWERUP_FAST = 18;
+        public const int TYPE_POWERUP_SLOW = 19;
 
-        public const int IMAGE_COUNT = 16;
+        public const int IMAGE_COUNT = 20;
 
         private IDictionary<int, string> mFilenames = new Dictionary<int, string>()
     {
@@ -48,7 +54,11 @@ namespace AdvancedWars
         {TYPE_BIGSHIP_BLUE_100, "Images\\GUI\\Kanonen100blau.png"},
         {TYPE_TRANSPORTER_BLUE_100, "Images\\GUI\\Kleines100blau.png"},
         {TYPE_DEFENSESHIP_BLUE_100, "Images\\GUI\\Piraten100blau.png"},
-        {TYPE_STANDART_BLUE_100, "Images\\GUI\\Standart100blau.png"}
+        {TYPE_STANDART_BLUE_100, "Images\\GUI\\Standart100blau.png"},
+        {TYPE_POWERUP_COIN, "Images\\Münze50.png"},
+        {TYPE_POWERUP_HEALTH, "Images\\Leben50.png"},
+        {TYPE_POWERUP_FAST, "Images\\Vorspulen50.png"},
+        {TYPE_POWERUP_SLOW, "Images\\zurückspulen50.png"}
     };
 
         private IDictionary<int, Bitmap> mBitaps = new Dictionary<int, Bitmap>();

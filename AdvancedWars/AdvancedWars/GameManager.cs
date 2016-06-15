@@ -16,6 +16,8 @@ namespace AdvancedWars
         private Player mActivePlayer;
         private Point[] mRedBaseSpawnAreaPoints;
         private Point[] mBlueBaseSpawnAreaPoints;
+        private Point[] mShipMovementAreaPoints;
+        private Point[] mShipCombatAreaPoints;
         private int mActivePhase;
         private List<Ship> mShipsSetThisTurn;
         public event ActivePlayerChangedHandler ActivePlayerChanged;
@@ -60,6 +62,24 @@ namespace AdvancedWars
                 if (ActivePlayer == mPlayerBlue)
                     points = mBlueBaseSpawnAreaPoints;
                 return points;
+            }
+        }
+
+        //Aktive Base zurückgeben
+        public Point[] ShipMovementAreaPoints
+        {
+            get
+            {
+                return mShipMovementAreaPoints;
+            }
+        }
+
+        //Aktive Base zurückgeben
+        public Point[] ShipCombatAreaPoints
+        {
+            get
+            {
+                return mShipCombatAreaPoints;
             }
         }
 
@@ -131,41 +151,11 @@ namespace AdvancedWars
                 if (mActivePlayer == mPlayerRed)
                     mActivePlayer = mPlayerBlue;
                 else
-                    mActivePlayer = mPlayerRed;             
+                    mActivePlayer = mPlayerRed;
+                setMoveableAndClearShipList();
                 mActivePhase = GameConstants.PHASE_SET;
                 ActivePlayerChanged();
             }
-        }
-
-        //Versucht ein Schiff zu plazieren. Gibt bei Erfolg true zurück.
-        internal bool TrySetShip(Ship ship,int x,int y)
-        {
-            bool success = false;
-            Point selectedPoint = new Point(x, y);  
-            if(ActivePlayer.Gold >= ship.Gold)
-            {
-                foreach (Point p in ActivePlaySpawnAreaPoints)
-                {
-                    if (selectedPoint.Equals(p))
-                    {
-                        success = true;
-                        break;
-                    }
-                }
-                if (success)
-                {
-                    if (mFields[x, y].Ship == null)
-                    {
-                        mFields[x, y].Ship = ship;
-                        ActivePlayer.Gold -= ship.Gold;
-                        mShipsSetThisTurn.Add(ship);
-                        drawShip(ship.Type.Name,x, y);
-                    }
-                    else
-                        success = false;
-                }
-            }            
-            return success;
         }
 
         //Setzt die Bewegungsverzögerung auf false und löscht dann die Einträge in der Schiffliste.
@@ -176,6 +166,40 @@ namespace AdvancedWars
                 ship.IsMoveable = true;
             }
             mShipsSetThisTurn.Clear();
+        }
+
+        //Versucht ein Schiff zu plazieren. Gibt bei Erfolg true zurück.
+        internal bool TrySetShip(Ship ship,int x,int y)
+        {
+            bool success = false;
+            if(ship != null)
+            {
+                Point selectedPoint = new Point(x, y);
+                if (ActivePlayer.Gold >= ship.Gold)
+                {
+                    foreach (Point p in ActivePlaySpawnAreaPoints)
+                    {
+                        if (selectedPoint.Equals(p))
+                        {
+                            success = true;
+                            break;
+                        }
+                    }
+                    if (success)
+                    {
+                        if (mFields[x, y].Ship == null)
+                        {
+                            mFields[x, y].Ship = ship;
+                            ActivePlayer.Gold -= ship.Gold;
+                            mShipsSetThisTurn.Add(ship);
+                            drawShip(ship.Type.Name, x, y);
+                        }
+                        else
+                            success = false;
+                    }
+                }
+            }            
+            return success;
         }
 
         //Zeichnet ein Schiff auf die Map.
@@ -222,6 +246,68 @@ namespace AdvancedWars
             Graphics g = Graphics.FromImage(mGameBoard);
             g.DrawImage(Images.Instance.GetImage(imageID), TileX, TileY, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
             g.Dispose();
+        }
+
+        //Gibt zurück, ob am angeklickten Punkt ein Schiff des aktiven Spielers ist, dass bewegt werden kann. Wenn ja setzt es die Bereiche
+        public bool ActivePlayersShipClicked(Point p)
+        {
+            bool success = false;
+            if(mFields[p.X,p.Y].Ship != null)
+            {
+                if(mFields[p.X, p.Y].Ship.ControllingPlayer == mActivePlayer)
+                {
+                    if(mFields[p.X, p.Y].Ship.IsMoveable)
+                    {
+                        success = true;
+                        if (mActivePhase == GameConstants.PHASE_FIGHT)
+                            setCombatAreaPoints(p);
+                        else
+                            setMovemantAreaPoints(p);
+                    }
+                }
+            }
+            return success;
+        }
+
+        //Setzt den Bereich um ein Schiff in der Angriffsphase
+        private void setCombatAreaPoints(Point p)
+        {
+            int radius = mFields[p.X, p.Y].Ship.Type.Radius;
+            List<Point> fields = new List<Point>();
+            for (int x = p.X - radius; x <= p.X + radius; x++)
+            {
+                for (int y = p.Y - radius; y <= p.Y + radius; y++)
+                {
+                    if (x >= 0 && x < mFields.GetLength(0) && y >= 0 && y < mFields.GetLength(1))
+                    {
+                        if(p.X != x || p.Y != y)
+                            fields.Add(new Point(x, y));
+                    }
+                }
+            }
+            mShipCombatAreaPoints = fields.ToArray();
+        }
+
+        //Setzt den Bereich den ein Schiff in der Bewegungssphase fahren kann.
+        private void setMovemantAreaPoints(Point p)
+        {
+            int movement = mFields[p.X, p.Y].Ship.Type.Movement;
+            List<Point> fields = new List<Point>();
+            for (int x = p.X - movement; x <= p.X + movement; x++)
+            {
+                if (x >= 0 && x < mFields.GetLength(0))
+                {
+                    fields.Add(new Point(x, p.Y));
+                }
+            }
+            for (int y = p.Y - movement; y <= p.Y + movement; y++)
+            {
+                if (y >= 0 && y < mFields.GetLength(1))
+                {
+                    fields.Add(new Point(p.X, y));
+                }
+            }                   
+            mShipMovementAreaPoints = fields.ToArray();
         }
     }
 }

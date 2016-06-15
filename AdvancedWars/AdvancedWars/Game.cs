@@ -15,6 +15,9 @@ namespace AdvancedWars
         private PictureBox[] imgShips;
         private bool mClearDraw;
         private Ship mActivatedShip;
+        private bool mShowRadius = false;
+        private bool mShowMovement = false;
+        private Point mClickedPoint = new Point(-1,-1);
 
         //Konstruktor
         public Game(Bitmap GameBoard, Field[,] fields, String pRedName, String pBlueName)
@@ -65,15 +68,29 @@ namespace AdvancedWars
             switch (phase)
             {
                 case GameConstants.PHASE_SET:
+                    enableShipIcons(true);
                     lbl_Spielphase.Text = "Bauphase";
                     break;
                 case GameConstants.PHASE_MOVE:
+                    enableShipIcons(false);
                     lbl_Spielphase.Text = "Bewegungsphase";
                     break;
                 case GameConstants.PHASE_FIGHT:
                     lbl_Spielphase.Text = "Kampfphase";
                     break;
             }
+        }
+
+        /// <summary>
+        /// Enabled/Disabled ShipIcons.
+        /// </summary>
+        /// <param name="enable">Gibt an ob die Icons enabled werden sollen.</param>
+        private void enableShipIcons(bool enable)
+        {
+            pic_normal.Enabled = enable;
+            pic_big.Enabled = enable;
+            pic_defense.Enabled = enable;
+            pic_transport.Enabled = enable;
         }
 
         //Aktualisiert das User Interface für den aktuellen Spieler
@@ -106,9 +123,11 @@ namespace AdvancedWars
         //Phasenwechsel
         private void btn_next_Click(object sender, EventArgs e)
         {
+            mShowMovement = false;
+            mShowRadius = false;           
             mGameManager.nextPhase();
             setActivePhaseUI();
-            pic_GameField.Refresh();
+            updateUI();
         }
 
         //Bei Klick auf ein Schiff wird das aktivierte Schiff gesetzt
@@ -121,16 +140,16 @@ namespace AdvancedWars
                 switch(selected.Name)
                 {
                     case "pic_normal":
-                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_STANDART));
+                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_STANDART), mGameManager.ActivePlayer);
                         break;
                     case "pic_big":
-                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_BIGSHIP));
+                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_BIGSHIP), mGameManager.ActivePlayer);
                         break;
                     case "pic_defense":
-                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_DEFENSESHIP));
+                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_DEFENSESHIP), mGameManager.ActivePlayer);
                         break;
                     case "pic_transport":
-                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_TRANSPORTER));
+                        mActivatedShip = new Ship(new Type(GameConstants.TYPE_TRANSPORTER), mGameManager.ActivePlayer);
                         break;
                     default:
                         mActivatedShip = null;
@@ -162,16 +181,37 @@ namespace AdvancedWars
                 Graphics g = pic_GameField.CreateGraphics();
                 if (mGameManager.ActivePhase == GameConstants.PHASE_SET)
                 {
-                    setBuildingGraphicalArea(g);
+                    setGraphicalArea(g, mGameManager.ActivePlaySpawnAreaPoints);
+                }
+                if (mGameManager.ActivePhase == GameConstants.PHASE_MOVE)
+                {
+                    //Zeichne beim Move
+                    if(mShowMovement)
+                    {
+                        //Zeichne Bewegungskreuz TODO
+                        //setGraphicalArea(g, mGameManager.ActiveShipMovementAreaPoints);
+                    }
+                }
+                if (mGameManager.ActivePhase == GameConstants.PHASE_FIGHT)
+                {
+                    //Zeichne beim Fight
+                    if(mShowRadius)
+                    {
+                        /*Zeichne Kampfradius TODO
+                        if(mGameManager.ActivePlayersShipClicked(mClickedPoint))
+                            setGraphicalArea(g, mGameManager.ShipCombatAreaPoints);
+                        else
+                            lbl_Log.Text = "Kein gültiges Schiff gewählt!";
+                        */
+                    }
                 }
                 g.Dispose();
             }
         }
 
         //Makiert Bereiche, in denen Figueren gesetzt werden können.
-        private void setBuildingGraphicalArea(Graphics g)
+        private void setGraphicalArea(Graphics g, Point[] points)
         {
-            Point[] points = mGameManager.ActivePlaySpawnAreaPoints;
             SolidBrush brush = new SolidBrush(Color.FromArgb(100, mGameManager.ActivePlayer.Color));
             foreach(Point p in points)
             {
@@ -187,6 +227,8 @@ namespace AdvancedWars
             MouseEventArgs me = e as MouseEventArgs;
             int x = me.X / GameConstants.GAMEFIELD_TILESIZE;
             int y = me.Y / GameConstants.GAMEFIELD_TILESIZE;
+            mClickedPoint.X = x;
+            mClickedPoint.Y = y;
             switch (mGameManager.ActivePhase)
             {
                 case GameConstants.PHASE_SET:
@@ -196,17 +238,35 @@ namespace AdvancedWars
                        if (!mGameManager.TrySetShip(mActivatedShip,x,y))
                        {
                             lbl_Log.Text = "Schiff konnte nicht gesetzt werden";
-                       }else
-                        {                       
-                            updateUI();
-                        }
+                       }
                     }
                     break;
                 case GameConstants.PHASE_MOVE:
+                    if (mShowMovement)
+                    {
+                        //Bewegung TODO
+                        //bei korrekter Bewegung:
+                        //mShowMovement = false;
+                    }
+                    else
+                    {                      
+                        mShowMovement = true;
+                    }                        
                     break;
                 case GameConstants.PHASE_FIGHT:
+                    if (mShowRadius)
+                    {
+                        //Angriff TODO 
+                        //if korrekt:
+                        //mShowRadius = false;                        
+                    }    
+                    else
+                    {
+                        mShowRadius = true;
+                    }
                     break;
             }
+            updateUI();
         }
 
     }
