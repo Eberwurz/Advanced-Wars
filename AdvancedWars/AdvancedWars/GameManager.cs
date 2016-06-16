@@ -296,22 +296,45 @@ namespace AdvancedWars
         {
             int movement = mFields[p.X, p.Y].Ship.Type.Movement;
             List<Point> fields = new List<Point>();
-            for (int x = p.X - movement; x <= p.X + movement; x++)
+            for (int x = p.X; x <= p.X + movement; x++)
             {
                 if (x >= 0 && x < mFields.GetLength(0))
                 {
+                    if (mFields[x, p.Y].Type == GameConstants.FIELDTYPE_BLOCKADE)
+                        break;
                     fields.Add(new Point(x, p.Y));
                 }
             }
-            for (int y = p.Y - movement; y <= p.Y + movement; y++)
+            for (int x = p.X - 1; x >= p.X - movement; x--)
+            {
+                if (x >= 0 && x < mFields.GetLength(0))
+                {
+                    if (mFields[x, p.Y].Type == GameConstants.FIELDTYPE_BLOCKADE)
+                        break;
+                    fields.Add(new Point(x, p.Y));
+                }
+            }
+            for (int y = p.Y + 1; y <= p.Y + movement; y++)
             {
                 if (y >= 0 && y < mFields.GetLength(1))
                 {
+                    if (mFields[p.X, y].Type == GameConstants.FIELDTYPE_BLOCKADE)
+                        break;
                     fields.Add(new Point(p.X, y));
                 }
-            }                   
+            }
+            for (int y = p.Y - 1; y >= p.Y - movement; y--)
+            {
+                if (y >= 0 && y < mFields.GetLength(1))
+                {
+                    if (mFields[p.X, y].Type == GameConstants.FIELDTYPE_BLOCKADE)
+                        break;
+                    fields.Add(new Point(p.X, y));
+                }
+            }
             mShipMovementAreaPoints = fields.ToArray();
         }
+
         private bool MoveShip(Point p)
         {
             bool success = false;

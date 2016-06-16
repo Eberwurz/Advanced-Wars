@@ -404,10 +404,11 @@
             // 
             // lbl_Log
             // 
-            this.lbl_Log.AutoSize = true;
-            this.lbl_Log.Location = new System.Drawing.Point(30, 712);
+            this.lbl_Log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_Log.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Log.Location = new System.Drawing.Point(30, 696);
             this.lbl_Log.Name = "lbl_Log";
-            this.lbl_Log.Size = new System.Drawing.Size(0, 13);
+            this.lbl_Log.Size = new System.Drawing.Size(870, 48);
             this.lbl_Log.TabIndex = 33;
             // 
             // Game

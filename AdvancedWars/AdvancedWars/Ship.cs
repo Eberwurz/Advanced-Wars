@@ -21,7 +21,7 @@ namespace AdvancedWars
 
         public Player ControllingPlayer
         {
-            get { return ControllingPlayer; }
+            get { return mControllingPlayer; }
         }
 
         public bool IsMoveable

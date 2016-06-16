@@ -15,7 +15,7 @@ namespace AdvancedWars
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameEdit());
+            Application.Run(new Titelmenu());
         }
     }
 }
