@@ -10,7 +10,7 @@ namespace AdvancedWars
         public Ship(Type Type,Player player) 
         {
             mType = Type;
-            mGold = Type.Cost;
+            mGold = 0;
             mIsMoveable = false;
             mControllingPlayer = player;
         }

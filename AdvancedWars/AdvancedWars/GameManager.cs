@@ -18,9 +18,11 @@ namespace AdvancedWars
         private Point[] mBlueBaseSpawnAreaPoints;
         private Point[] mShipMovementAreaPoints;
         private Point[] mShipCombatAreaPoints;
+        private Field mSelectedField;
         private int mActivePhase;
         private List<Ship> mShipsSetThisTurn;
         public event ActivePlayerChangedHandler ActivePlayerChanged;
+        
 
         //Konstruktor. Initialisiert Variabeln
         public GameManager(Bitmap GameBoard, Field[,] fields, String pRedName, String pBlueName)
@@ -259,6 +261,7 @@ namespace AdvancedWars
                     if(mFields[p.X, p.Y].Ship.IsMoveable)
                     {
                         success = true;
+                        mSelectedField = mFields[p.X, p.Y];
                         if (mActivePhase == GameConstants.PHASE_FIGHT)
                             setCombatAreaPoints(p);
                         else
@@ -308,6 +311,27 @@ namespace AdvancedWars
                 }
             }                   
             mShipMovementAreaPoints = fields.ToArray();
+        }
+        private bool MoveShip(Point p)
+        {
+            bool success = false;
+
+            if (mShipMovementAreaPoints.Contains(p))
+            {
+                if ((mFields[p.X,p.Y].Ship) == null)
+                {
+                    if (ActivePlaySpawnAreaPoints.Contains(p))
+                    {
+                        ActivePlayer.Gold += mSelectedField.Ship.Gold;
+                        mSelectedField.Ship.Gold = 0;
+                    }
+                    mFields[p.X, p.Y].Ship = mSelectedField.Ship;
+                    mSelectedField.Ship = null;   
+                } 
+            }
+
+
+            return success;
         }
     }
 }
