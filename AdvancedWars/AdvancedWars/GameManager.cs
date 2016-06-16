@@ -194,7 +194,9 @@ namespace AdvancedWars
                             mFields[x, y].Ship = ship;
                             ActivePlayer.Gold -= ship.Gold;
                             mShipsSetThisTurn.Add(ship);
-                            drawShip(ship.Type.Name, x, y);
+                            Graphics g = Graphics.FromImage(mGameBoard);
+                            drawShip(mFields[x,y],g, x, y);
+                            g.Dispose();
                         }
                         else
                             success = false;
@@ -202,52 +204,6 @@ namespace AdvancedWars
                 }
             }            
             return success;
-        }
-
-        //Zeichnet ein Schiff auf die Map.
-        private void drawShip(string shiptype,int x, int y)
-        {
-            int TileX = x * GameConstants.GAMEFIELD_TILESIZE;
-            int TileY = y * GameConstants.GAMEFIELD_TILESIZE;
-            int imageID = 0;
-            if (ActivePlayer.Color == Color.Red)
-            {
-                switch(shiptype)
-                {
-                    case GameConstants.TYPE_STANDART:
-                        imageID = Images.TYPE_STANDART_RED;
-                        break;
-                    case GameConstants.TYPE_TRANSPORTER:
-                        imageID = Images.TYPE_TRANSPORTER_RED;
-                        break;
-                    case GameConstants.TYPE_DEFENSESHIP:
-                        imageID = Images.TYPE_DEFENSESHIP_RED;
-                        break;
-                    case GameConstants.TYPE_BIGSHIP:
-                        imageID = Images.TYPE_BIGSHIP_RED;
-                        break;
-                }    
-            }else
-            {
-                switch (shiptype)
-                {
-                    case GameConstants.TYPE_STANDART:
-                        imageID = Images.TYPE_STANDART_BLUE;
-                        break;
-                    case GameConstants.TYPE_TRANSPORTER:
-                        imageID = Images.TYPE_TRANSPORTER_BLUE;
-                        break;
-                    case GameConstants.TYPE_DEFENSESHIP:
-                        imageID = Images.TYPE_DEFENSESHIP_BLUE;
-                        break;
-                    case GameConstants.TYPE_BIGSHIP:
-                        imageID = Images.TYPE_BIGSHIP_BLUE;
-                        break;
-                }
-            }           
-            Graphics g = Graphics.FromImage(mGameBoard);
-            g.DrawImage(Images.Instance.GetImage(imageID), TileX, TileY, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
-            g.Dispose();
         }
 
         //Gibt zurück, ob am angeklickten Punkt ein Schiff des aktiven Spielers ist, dass bewegt werden kann. Wenn ja setzt es die Bereiche
@@ -335,7 +291,7 @@ namespace AdvancedWars
             mShipMovementAreaPoints = fields.ToArray();
         }
 
-        private bool MoveShip(Point p)
+        public bool TryMoveShip(Point p)
         {
             bool success = false;
 
@@ -349,12 +305,145 @@ namespace AdvancedWars
                         mSelectedField.Ship.Gold = 0;
                     }
                     mFields[p.X, p.Y].Ship = mSelectedField.Ship;
-                    mSelectedField.Ship = null;   
+                    mSelectedField.Ship = null;
+                    //update image TODO
+                    updateFieldImage(mFields[p.X, p.Y], p.X, p.Y);
+                    success = true;
                 } 
             }
-
-
             return success;
+        }
+
+        //Versucht ein Gegnerisches Schiff anzugreifen. Gibt True zurück, wenn ein gegnerisches Schiff oder das eigene Schiff angeklickt wurde.
+        public bool TryAttackShip(Point p)
+        {
+            bool success = false;
+            if(mShipCombatAreaPoints.Contains(p))
+            {
+                if(mFields[p.X,p.Y].Ship != null)
+                {
+                    if(mFields[p.X,p.Y].Ship.ControllingPlayer != ActivePlayer)
+                    {
+                        mFields[p.X, p.Y].Ship.Type.Health = mFields[p.X, p.Y].Ship.Type.Health - mSelectedField.Ship.Type.Damage;
+                        if(!mFields[p.X, p.Y].Ship.Alive)
+                        {
+                            mFields[p.X, p.Y].PowerUp = GameConstants.POWERUP_GOLD;
+                            mFields[p.X, p.Y].PowerUpValue = mFields[p.X, p.Y].Ship.Gold;
+                            mFields[p.X, p.Y].Ship = null;
+                            //update image TODO
+                            updateFieldImage(mFields[p.X, p.Y], p.X,p.Y);
+                        }
+                        success = true;
+                    }
+                }
+                //TODO INSEL ANGREIFEN
+            }else
+            {
+                if (mSelectedField == mFields[p.X,p.Y])
+                {
+                    //bricht Auswahl ab!
+                    success = true;
+                }
+            }
+            return success;
+        }
+
+        private void updateFieldImage(Field field, int x, int y)
+        {
+            Graphics g = Graphics.FromImage(mGameBoard);
+            int TileX = x * GameConstants.GAMEFIELD_TILESIZE;
+            int TileY = y * GameConstants.GAMEFIELD_TILESIZE;
+            drawField(field,g, TileX, TileY);
+            drawPowerUp(field, g, TileX, TileY);
+            drawShip(field, g, TileX, TileY);
+            
+            g.Dispose();
+        }
+        //Zeichnet das Feld
+        private void drawField(Field field,Graphics g, int x, int y)
+        {
+            int imageID = 0;
+            switch (field.Type)
+            {
+                case GameConstants.FIELDTYPE_NORMAL:
+                    imageID = Images.TYPE_FIELD_NORMAL;
+                    break;
+                case GameConstants.FIELDTYPE_BLOCKADE:
+                    imageID = Images.TYPE_FIELD_MOUNTAIN;
+                    break;
+                case GameConstants.FIELDTYPE_BASE:
+                    if (field.Player == GameConstants.PLAYER_RED)
+                        imageID = Images.TYPE_FIELD_ISLANDRED;
+                    else
+                        imageID = Images.TYPE_FIELD_ISLANDBLUE;
+                    break;
+            }
+            g.DrawImage(Images.Instance.GetImage(imageID), x, y, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
+        }
+        //Zeichnet das PowerUp
+        private void drawPowerUp(Field field, Graphics g, int tileX, int tileY)
+        {
+            int imageID = 0;
+            switch (field.PowerUp)
+            {
+                case GameConstants.POWERUP_GOLD:
+                    imageID = Images.TYPE_POWERUP_COIN;
+                    break;
+                case GameConstants.POWERUP_NONE:
+                    return;
+                case GameConstants.POWERUP_SPEED:
+                    imageID = Images.TYPE_POWERUP_FAST;
+                    break;
+                case GameConstants.POWERUP_SLOW:
+                    imageID = Images.TYPE_POWERUP_SLOW;
+                    break;
+            }
+            g.DrawImage(Images.Instance.GetImage(imageID), tileX, tileY, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
+        }
+
+        //Zeichnet ein Schiff auf die Map.
+        private void drawShip(Field field,Graphics g, int x, int y)
+        {
+            int TileX = x * GameConstants.GAMEFIELD_TILESIZE;
+            int TileY = y * GameConstants.GAMEFIELD_TILESIZE;
+            int imageID = 0;
+            if (ActivePlayer.Color == Color.Red)
+            {
+                switch (field.Ship.Type.Name)
+                {
+                    case GameConstants.TYPE_STANDART:
+                        imageID = Images.TYPE_STANDART_RED;
+                        break;
+                    case GameConstants.TYPE_TRANSPORTER:
+                        imageID = Images.TYPE_TRANSPORTER_RED;
+                        break;
+                    case GameConstants.TYPE_DEFENSESHIP:
+                        imageID = Images.TYPE_DEFENSESHIP_RED;
+                        break;
+                    case GameConstants.TYPE_BIGSHIP:
+                        imageID = Images.TYPE_BIGSHIP_RED;
+                        break;
+                }
+            }
+            else
+            {
+                switch (field.Ship.Type.Name)
+                {
+                    case GameConstants.TYPE_STANDART:
+                        imageID = Images.TYPE_STANDART_BLUE;
+                        break;
+                    case GameConstants.TYPE_TRANSPORTER:
+                        imageID = Images.TYPE_TRANSPORTER_BLUE;
+                        break;
+                    case GameConstants.TYPE_DEFENSESHIP:
+                        imageID = Images.TYPE_DEFENSESHIP_BLUE;
+                        break;
+                    case GameConstants.TYPE_BIGSHIP:
+                        imageID = Images.TYPE_BIGSHIP_BLUE;
+                        break;
+                }
+            }
+            g.DrawImage(Images.Instance.GetImage(imageID), TileX, TileY, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
         }
     }
 }

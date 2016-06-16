@@ -193,7 +193,6 @@ namespace AdvancedWars
                             setGraphicalArea(g, mGameManager.ShipMovementAreaPoints);
                         else
                             log(Color.Red, "Kein gültiges Schiff gewählt!");
-                        //setGraphicalArea(g, mGameManager.ActiveShipMovementAreaPoints);
                     }
                 }
                 if (mGameManager.ActivePhase == GameConstants.PHASE_FIGHT)
@@ -205,7 +204,6 @@ namespace AdvancedWars
                             setGraphicalArea(g, mGameManager.ShipCombatAreaPoints);
                         else
                             log(Color.Red, "Kein gültiges Schiff gewählt!");
-
                     }
                 }
                 g.Dispose();
@@ -261,8 +259,10 @@ namespace AdvancedWars
                     if (mShowRadius)
                     {
                         //Angriff TODO 
-                        //if korrekt:
-                        //mShowRadius = false;                        
+                        if(mGameManager.TryAttackShip(new Point(x,y)))
+                        {
+                            mShowRadius = false;
+                        }                  
                     }    
                     else
                     {

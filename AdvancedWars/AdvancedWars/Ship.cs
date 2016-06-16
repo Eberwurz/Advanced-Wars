@@ -19,6 +19,11 @@ namespace AdvancedWars
         private bool mIsMoveable;
         private Player mControllingPlayer; 
 
+        public bool Alive
+        {
+            get { return mType.Health > 0; }
+        }
+
         public Player ControllingPlayer
         {
             get { return mControllingPlayer; }

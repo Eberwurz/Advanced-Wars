@@ -34,8 +34,12 @@ namespace AdvancedWars
         public const int TYPE_POWERUP_HEALTH = 17;
         public const int TYPE_POWERUP_FAST = 18;
         public const int TYPE_POWERUP_SLOW = 19;
+        public const int TYPE_FIELD_NORMAL = 20;
+        public const int TYPE_FIELD_MOUNTAIN = 21;
+        public const int TYPE_FIELD_ISLANDBLUE = 22;
+        public const int TYPE_FIELD_ISLANDRED = 23;
 
-        public const int IMAGE_COUNT = 20;
+        public const int IMAGE_COUNT = 24;
 
         private IDictionary<int, string> mFilenames = new Dictionary<int, string>()
     {
@@ -58,7 +62,11 @@ namespace AdvancedWars
         {TYPE_POWERUP_COIN, "Images\\Münze50.png"},
         {TYPE_POWERUP_HEALTH, "Images\\Leben50.png"},
         {TYPE_POWERUP_FAST, "Images\\Vorspulen50.png"},
-        {TYPE_POWERUP_SLOW, "Images\\zurückspulen50.png"}
+        {TYPE_POWERUP_SLOW, "Images\\zurückspulen50.png"},
+        {TYPE_FIELD_NORMAL, "Images\\Wellen50.png"},
+        {TYPE_FIELD_MOUNTAIN, "Images\\Felsen50.png"},
+        {TYPE_FIELD_ISLANDBLUE, "Images\\InselBlau50.png"},
+        {TYPE_FIELD_ISLANDRED, "Images\\InselRot50.png"}
     };
 
         private IDictionary<int, Bitmap> mBitaps = new Dictionary<int, Bitmap>();
