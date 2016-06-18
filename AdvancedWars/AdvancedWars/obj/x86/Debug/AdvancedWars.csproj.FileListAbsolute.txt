@@ -129,3 +129,5 @@ E:\Dokumente\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\Advance
 E:\Dokumente\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Game.resources
 E:\Dokumente\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Titelmenu.resources
 E:\Dokumente\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.csproj.GenerateResource.Cache
+C:\Users\René\Documents\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.exe
+C:\Users\René\Documents\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.pdb

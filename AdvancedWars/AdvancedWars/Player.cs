@@ -12,6 +12,7 @@ namespace AdvancedWars
         private string mName;
         private int mShipMoved;
         private Color mColor;
+        private int mHealth;
 
         public Player(string name, Color color)
         {
@@ -19,6 +20,7 @@ namespace AdvancedWars
             mName = name;
             mShipMoved=0;
             mColor = color;
+            mHealth = GameConstants.BASEHEALTH;
         }
 
         public Color Color
@@ -41,6 +43,17 @@ namespace AdvancedWars
         {
             get { return mShipMoved; }
             set { mShipMoved = value; }
+        }
+
+        public int Health
+        {
+            get { return mHealth; }
+            set { mHealth = value; }
+        }
+
+        public bool isAlive()
+        {
+            return mHealth > 0;
         }
     }
 }

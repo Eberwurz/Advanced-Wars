@@ -8,6 +8,7 @@ namespace AdvancedWars
     public class GameConstants
     {
         public const int PLAYER_STARTINGGOLD = 100;
+        public const int BASEHEALTH = 200;
 
         public const string TYPE_BIGSHIP = "Bigship";
         public const string TYPE_TRANSPORTER = "Transporter";

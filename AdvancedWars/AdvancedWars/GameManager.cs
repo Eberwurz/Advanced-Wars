@@ -18,7 +18,7 @@ namespace AdvancedWars
         private Point[] mBlueBaseSpawnAreaPoints;
         private Point[] mShipMovementAreaPoints;
         private Point[] mShipCombatAreaPoints;
-        private Field mSelectedField;
+        private Point mSelectedFieldPoint;
         private int mActivePhase;
         private List<Ship> mShipsSetThisTurn;
         public event ActivePlayerChangedHandler ActivePlayerChanged;
@@ -217,7 +217,7 @@ namespace AdvancedWars
                     if(mFields[p.X, p.Y].Ship.IsMoveable)
                     {
                         success = true;
-                        mSelectedField = mFields[p.X, p.Y];
+                        mSelectedFieldPoint = p;
                         if (mActivePhase == GameConstants.PHASE_FIGHT)
                             setCombatAreaPoints(p);
                         else
@@ -294,6 +294,7 @@ namespace AdvancedWars
         public bool TryMoveShip(Point p)
         {
             bool success = false;
+            Field selectedField = mFields[mSelectedFieldPoint.X, mSelectedFieldPoint.Y];
 
             if (mShipMovementAreaPoints.Contains(p))
             {
@@ -301,13 +302,15 @@ namespace AdvancedWars
                 {
                     if (ActivePlaySpawnAreaPoints.Contains(p))
                     {
-                        ActivePlayer.Gold += mSelectedField.Ship.Gold;
-                        mSelectedField.Ship.Gold = 0;
+                        ActivePlayer.Gold += selectedField.Ship.Gold;
+                        selectedField.Ship.Gold = 0;
                     }
-                    mFields[p.X, p.Y].Ship = mSelectedField.Ship;
-                    mSelectedField.Ship = null;
+                    mFields[p.X, p.Y].Ship = selectedField.Ship;
+                    selectedField.Ship = null;
                     //update image TODO
                     updateFieldImage(mFields[p.X, p.Y], p.X, p.Y);
+                    updateFieldImage(selectedField, mSelectedFieldPoint.X, mSelectedFieldPoint.Y);
+
                     success = true;
                 } 
             }
@@ -318,28 +321,46 @@ namespace AdvancedWars
         public bool TryAttackShip(Point p)
         {
             bool success = false;
-            if(mShipCombatAreaPoints.Contains(p))
+            Field selectedField = mFields[mSelectedFieldPoint.X, mSelectedFieldPoint.Y];
+            if (mShipCombatAreaPoints.Contains(p))
             {
                 if(mFields[p.X,p.Y].Ship != null)
                 {
                     if(mFields[p.X,p.Y].Ship.ControllingPlayer != ActivePlayer)
                     {
-                        mFields[p.X, p.Y].Ship.Type.Health = mFields[p.X, p.Y].Ship.Type.Health - mSelectedField.Ship.Type.Damage;
+                        mFields[p.X, p.Y].Ship.Type.Health = mFields[p.X, p.Y].Ship.Type.Health - selectedField.Ship.Type.Damage;
                         if(!mFields[p.X, p.Y].Ship.Alive)
                         {
                             mFields[p.X, p.Y].PowerUp = GameConstants.POWERUP_GOLD;
                             mFields[p.X, p.Y].PowerUpValue = mFields[p.X, p.Y].Ship.Gold;
                             mFields[p.X, p.Y].Ship = null;
-                            //update image TODO
                             updateFieldImage(mFields[p.X, p.Y], p.X,p.Y);
                         }
                         success = true;
                     }
+                }else if(mFields[p.X,p.Y].Type == GameConstants.FIELDTYPE_BASE)
+                {
+                    string color = GameConstants.PLAYER_BLUE;
+                    Player pl = mPlayerBlue;
+                    if(ActivePlayer.Color == Color.Blue)
+                    {
+                        color = GameConstants.PLAYER_RED;
+                        pl = mPlayerRed;
+                    }
+                    if(mFields[p.X,p.Y].Player == color)
+                    {
+                        pl.Health = pl.Health - selectedField.Ship.Type.Damage;
+                        if(!pl.isAlive())
+                        {
+                            //gameover
+                        }
+                        success = true;
+                    }                    
                 }
-                //TODO INSEL ANGREIFEN
-            }else
+            }
+            else
             {
-                if (mSelectedField == mFields[p.X,p.Y])
+                if (selectedField == mFields[p.X,p.Y])
                 {
                     //bricht Auswahl ab!
                     success = true;
