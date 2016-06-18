@@ -25,10 +25,18 @@ namespace AdvancedWars
             InitializeComponent();
             mGameManager = new GameManager(GameBoard, fields, pRedName, pBlueName);            
             initializeGameUI();
-            mGameManager.ActivePlayerChanged += new ActivePlayerChangedHandler(onActivePlayerChanged);
+            mGameManager.ActivePlayerChanged += new GameManagerChangedHandler(onActivePlayerChanged);
+            mGameManager.GameOver += new GameManagerChangedHandler(onGameOver);
             imgShips = new PictureBox[] {pic_defense,pic_big, pic_normal, pic_transport };
             mClearDraw = false;
             mActivatedShip = null;
+        }
+
+        private void onGameOver()
+        {
+            // Tu was wenn GameOver.
+            log(Color.Green, String.Format("{0} hat gewonnen", mGameManager.ActivePlayer.Name));
+            pic_GameField.Enabled = false;
         }
 
         //Event, dass vom GameManager geworfen wird, wenn der aktuelle Spieler wechselt.

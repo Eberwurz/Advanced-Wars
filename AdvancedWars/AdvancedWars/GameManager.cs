@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AdvancedWars
 {
-    public delegate void ActivePlayerChangedHandler();
+    public delegate void GameManagerChangedHandler();
     public class GameManager
     {
         private Field[,] mFields;
@@ -21,7 +21,8 @@ namespace AdvancedWars
         private Point mSelectedFieldPoint;
         private int mActivePhase;
         private List<Ship> mShipsSetThisTurn;
-        public event ActivePlayerChangedHandler ActivePlayerChanged;
+        public event GameManagerChangedHandler ActivePlayerChanged;
+        public event GameManagerChangedHandler GameOver;
         
 
         //Konstruktor. Initialisiert Variabeln
@@ -353,6 +354,7 @@ namespace AdvancedWars
                         if(!pl.isAlive())
                         {
                             //gameover
+                            GameOver();
                         }
                         success = true;
                     }                    
