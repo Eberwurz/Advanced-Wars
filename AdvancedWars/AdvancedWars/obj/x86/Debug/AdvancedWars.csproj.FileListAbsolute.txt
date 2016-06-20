@@ -131,3 +131,14 @@ E:\Dokumente\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\Advance
 E:\Dokumente\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.csproj.GenerateResource.Cache
 C:\Users\René\Documents\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.exe
 C:\Users\René\Documents\GitHub\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.pdb
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\Felsen100.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\Gitter.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\Leben100.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\Münze100.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\None.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\Vorspulen100.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\Wellen100.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Images\GUI\zurückspulen100.png
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Leveleditor.exe
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Leveleditor.pdb
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Titelmenu.resources

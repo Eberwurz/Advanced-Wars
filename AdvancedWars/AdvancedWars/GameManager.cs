@@ -20,7 +20,6 @@ namespace AdvancedWars
         private Point[] mShipCombatAreaPoints;
         private Point mSelectedFieldPoint;
         private int mActivePhase;
-        private List<Ship> mShipsSetThisTurn;
         public event GameManagerChangedHandler ActivePlayerChanged;
         public event GameManagerChangedHandler GameOver;
         
@@ -35,7 +34,6 @@ namespace AdvancedWars
             mActivePlayer = mPlayerRed;
             mActivePhase = GameConstants.PHASE_SET;
             getBasePoints();
-            mShipsSetThisTurn = new List<Ship>();
         }
 
         //Gib den aktiven Spieler zurück
@@ -151,24 +149,15 @@ namespace AdvancedWars
             mActivePhase++;
             if(mActivePhase == 3)
             {
+                mActivePlayer.ResetShips();
                 if (mActivePlayer == mPlayerRed)
                     mActivePlayer = mPlayerBlue;
                 else
                     mActivePlayer = mPlayerRed;
-                setMoveableAndClearShipList();
                 mActivePhase = GameConstants.PHASE_SET;
                 ActivePlayerChanged();
             }
-        }
 
-        //Setzt die Bewegungsverzögerung auf false und löscht dann die Einträge in der Schiffliste.
-        private void setMoveableAndClearShipList()
-        {
-            foreach (Ship ship in mShipsSetThisTurn)
-            {
-                ship.IsMoveable = true;
-            }
-            mShipsSetThisTurn.Clear();
         }
 
         //Versucht ein Schiff zu plazieren. Gibt bei Erfolg true zurück.
@@ -194,7 +183,7 @@ namespace AdvancedWars
                         {
                             mFields[x, y].Ship = ship;
                             ActivePlayer.Gold -= ship.Gold;
-                            mShipsSetThisTurn.Add(ship);
+                            ActivePlayer.AddShip(ship);
                             Graphics g = Graphics.FromImage(mGameBoard);
                             drawShip(mFields[x,y],g, x, y);
                             g.Dispose();
@@ -215,15 +204,24 @@ namespace AdvancedWars
             {
                 if(mFields[p.X, p.Y].Ship.ControllingPlayer == mActivePlayer)
                 {
-                    if(mFields[p.X, p.Y].Ship.IsMoveable)
+                    if (mActivePhase == GameConstants.PHASE_MOVE)
                     {
-                        success = true;
-                        mSelectedFieldPoint = p;
-                        if (mActivePhase == GameConstants.PHASE_FIGHT)
-                            setCombatAreaPoints(p);
-                        else
-                            setMovemantAreaPoints(p);
+                        if (mFields[p.X, p.Y].Ship.IsMoveable)
+                        {
+                            success = true;
+                            mSelectedFieldPoint = p;
+                            setMovementAreaPoints(p);
+                        }
                     }
+                    else if (mActivePhase == GameConstants.PHASE_FIGHT)
+                    {
+                        if (mFields[p.X, p.Y].Ship.IsMoveable)
+                        {
+                            success = true;
+                            mSelectedFieldPoint = p;
+                            setCombatAreaPoints(p);
+                        }
+                    } 
                 }
             }
             return success;
@@ -249,7 +247,7 @@ namespace AdvancedWars
         }
 
         //Setzt den Bereich den ein Schiff in der Bewegungssphase fahren kann.
-        private void setMovemantAreaPoints(Point p)
+        private void setMovementAreaPoints(Point p)
         {
             int movement = mFields[p.X, p.Y].Ship.Type.Movement;
             List<Point> fields = new List<Point>();
@@ -308,6 +306,7 @@ namespace AdvancedWars
                     }
                     mFields[p.X, p.Y].Ship = selectedField.Ship;
                     selectedField.Ship = null;
+                    mFields[p.X, p.Y].Ship.IsMoveable = false;
                     //update image TODO
                     updateFieldImage(mFields[p.X, p.Y], p.X, p.Y);
                     updateFieldImage(selectedField, mSelectedFieldPoint.X, mSelectedFieldPoint.Y);
@@ -333,13 +332,20 @@ namespace AdvancedWars
                         if(!mFields[p.X, p.Y].Ship.Alive)
                         {
                             mFields[p.X, p.Y].PowerUp = GameConstants.POWERUP_GOLD;
+                            //TODO
                             mFields[p.X, p.Y].PowerUpValue = mFields[p.X, p.Y].Ship.Gold;
+                            Player opponent = mPlayerRed;
+                            if (mActivePlayer == mPlayerRed)
+                                opponent = mPlayerBlue;
+                            opponent.RemoveShip(mFields[p.X, p.Y].Ship);
                             mFields[p.X, p.Y].Ship = null;
                             updateFieldImage(mFields[p.X, p.Y], p.X,p.Y);
                         }
                         success = true;
+                        selectedField.Ship.CanAttack = false;
                     }
-                }else if(mFields[p.X,p.Y].Type == GameConstants.FIELDTYPE_BASE)
+                }
+                else if(mFields[p.X,p.Y].Type == GameConstants.FIELDTYPE_BASE)
                 {
                     string color = GameConstants.PLAYER_BLUE;
                     Player pl = mPlayerBlue;
@@ -357,6 +363,7 @@ namespace AdvancedWars
                             GameOver();
                         }
                         success = true;
+                        selectedField.Ship.CanAttack = false;
                     }                    
                 }
             }

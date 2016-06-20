@@ -13,6 +13,7 @@ namespace AdvancedWars
         private int mShipMoved;
         private Color mColor;
         private int mHealth;
+        private List<Ship> mShips;
 
         public Player(string name, Color color)
         {
@@ -21,6 +22,31 @@ namespace AdvancedWars
             mShipMoved=0;
             mColor = color;
             mHealth = GameConstants.BASEHEALTH;
+        }
+
+        public void AddShip(Ship s)
+        {
+            mShips.Add(s);
+        }
+
+        public void RemoveShip(Ship s)
+        {
+            if (mShips.Contains(s))
+            {
+                mShips.Remove(s);
+            }
+        }
+
+        public void ResetShips()
+        {
+            foreach (Ship ship in mShips)
+            {
+                if(ship !=null)
+                {
+                    ship.IsMoveable = true;
+                    ship.CanAttack = true;
+                }
+            }
         }
 
         public Color Color

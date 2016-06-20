@@ -12,16 +12,24 @@ namespace AdvancedWars
             mType = Type;
             mGold = 0;
             mIsMoveable = false;
+            mCanAttack = false;
             mControllingPlayer = player;
         }
         private Type mType;
         private int mGold;
         private bool mIsMoveable;
+        private bool mCanAttack;
         private Player mControllingPlayer; 
 
         public bool Alive
         {
             get { return mType.Health > 0; }
+        }
+
+        public bool CanAttack
+        {
+            get { return mCanAttack; }
+            set { mCanAttack = value; }
         }
 
         public Player ControllingPlayer

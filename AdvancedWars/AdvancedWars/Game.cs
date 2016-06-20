@@ -66,6 +66,8 @@ namespace AdvancedWars
             pic_GameField.BackgroundImage = mGameManager.GameBoard;
             lbl_player1gold.Text = mGameManager.PlayerRed.Gold.ToString();
             lbl_player2gold.Text = mGameManager.PlayerBlue.Gold.ToString();
+            lblBluePlayerHealth.Text = mGameManager.PlayerBlue.Health.ToString();
+            lblRedPlayerHealth.Text = mGameManager.PlayerRed.Health.ToString();
             pic_GameField.Refresh();
         }
 
@@ -254,9 +256,10 @@ namespace AdvancedWars
                 case GameConstants.PHASE_MOVE:
                     if (mShowMovement)
                     {
-                        //Bewegung TODO
-                        //bei korrekter Bewegung:
-                        //mShowMovement = false;
+                        if (mGameManager.TryMoveShip(new Point(x, y)))
+                        {
+                            mShowMovement = false;
+                        }
                     }
                     else
                     {                      
@@ -266,7 +269,6 @@ namespace AdvancedWars
                 case GameConstants.PHASE_FIGHT:
                     if (mShowRadius)
                     {
-                        //Angriff TODO 
                         if(mGameManager.TryAttackShip(new Point(x,y)))
                         {
                             mShowRadius = false;

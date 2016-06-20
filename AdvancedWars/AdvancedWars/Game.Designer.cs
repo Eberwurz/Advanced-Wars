@@ -63,6 +63,10 @@
             this.label22 = new System.Windows.Forms.Label();
             this.pic_GameField = new System.Windows.Forms.Panel();
             this.lbl_Log = new System.Windows.Forms.Label();
+            this.lblRedPlayerHealth = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblBluePlayerHealth = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic_normal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_defense)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_big)).BeginInit();
@@ -82,7 +86,7 @@
             // 
             // lbl_player1gold
             // 
-            this.lbl_player1gold.Location = new System.Drawing.Point(67, 95);
+            this.lbl_player1gold.Location = new System.Drawing.Point(67, 78);
             this.lbl_player1gold.Name = "lbl_player1gold";
             this.lbl_player1gold.Size = new System.Drawing.Size(154, 14);
             this.lbl_player1gold.TabIndex = 6;
@@ -98,7 +102,7 @@
             // 
             // lbl_player2gold
             // 
-            this.lbl_player2gold.Location = new System.Drawing.Point(69, 95);
+            this.lbl_player2gold.Location = new System.Drawing.Point(69, 77);
             this.lbl_player2gold.Name = "lbl_player2gold";
             this.lbl_player2gold.Size = new System.Drawing.Size(144, 14);
             this.lbl_player2gold.TabIndex = 8;
@@ -108,7 +112,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 91);
+            this.label1.Location = new System.Drawing.Point(4, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 18);
             this.label1.TabIndex = 9;
@@ -339,6 +343,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.lblRedPlayerHealth);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.lbl_player1name);
@@ -352,6 +358,8 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.lblBluePlayerHealth);
+            this.panel4.Controls.Add(this.label14);
             this.panel4.Controls.Add(this.label18);
             this.panel4.Controls.Add(this.label19);
             this.panel4.Controls.Add(this.label22);
@@ -386,7 +394,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(4, 91);
+            this.label22.Location = new System.Drawing.Point(4, 73);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(49, 18);
             this.label22.TabIndex = 9;
@@ -410,6 +418,42 @@
             this.lbl_Log.Name = "lbl_Log";
             this.lbl_Log.Size = new System.Drawing.Size(870, 48);
             this.lbl_Log.TabIndex = 33;
+            // 
+            // lblRedPlayerHealth
+            // 
+            this.lblRedPlayerHealth.Location = new System.Drawing.Point(66, 109);
+            this.lblRedPlayerHealth.Name = "lblRedPlayerHealth";
+            this.lblRedPlayerHealth.Size = new System.Drawing.Size(154, 14);
+            this.lblRedPlayerHealth.TabIndex = 30;
+            this.lblRedPlayerHealth.Text = "<Leben>";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 105);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 18);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Leben:";
+            // 
+            // lblBluePlayerHealth
+            // 
+            this.lblBluePlayerHealth.Location = new System.Drawing.Point(66, 105);
+            this.lblBluePlayerHealth.Name = "lblBluePlayerHealth";
+            this.lblBluePlayerHealth.Size = new System.Drawing.Size(154, 14);
+            this.lblBluePlayerHealth.TabIndex = 30;
+            this.lblBluePlayerHealth.Text = "<Leben>";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(3, 101);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(58, 18);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "Leben:";
             // 
             // Game
             // 
@@ -494,5 +538,9 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel pic_GameField;
         private System.Windows.Forms.Label lbl_Log;
+        private System.Windows.Forms.Label lblRedPlayerHealth;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblBluePlayerHealth;
+        private System.Windows.Forms.Label label14;
     }
 }
