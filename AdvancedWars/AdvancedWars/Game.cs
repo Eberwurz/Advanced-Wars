@@ -141,6 +141,7 @@ namespace AdvancedWars
             mShowRadius = false;           
             mGameManager.nextPhase();
             setActivePhaseUI();
+			resetShipSelection();
             updateUI();
         }
 
@@ -265,8 +266,7 @@ namespace AdvancedWars
                         }
                         else {
                             log(Color.Green, "Schiff wurde gesetzt.");
-                            mActivatedShip = null;
-                            setSelectedShipBorder(null);
+                            resetShipSelection()
                         }
                     }
                     break;
@@ -299,7 +299,13 @@ namespace AdvancedWars
             }
             updateUI();
         }
-
+		
+		private void resetShipSelection()
+		{
+			mActivatedShip = null;
+            setSelectedShipBorder(null);
+		}
+		
         private void log(Color color, string message)
         {
             lbl_Log.ForeColor = color;
