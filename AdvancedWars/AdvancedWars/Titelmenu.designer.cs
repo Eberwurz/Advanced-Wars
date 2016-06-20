@@ -36,10 +36,9 @@
             // 
             // btn_newGame
             // 
-            this.btn_newGame.Location = new System.Drawing.Point(93, 103);
-            this.btn_newGame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_newGame.Location = new System.Drawing.Point(62, 67);
             this.btn_newGame.Name = "btn_newGame";
-            this.btn_newGame.Size = new System.Drawing.Size(246, 82);
+            this.btn_newGame.Size = new System.Drawing.Size(164, 53);
             this.btn_newGame.TabIndex = 0;
             this.btn_newGame.Text = "Neues Spiel";
             this.btn_newGame.UseVisualStyleBackColor = true;
@@ -47,10 +46,9 @@
             // 
             // btn_exit
             // 
-            this.btn_exit.Location = new System.Drawing.Point(93, 428);
-            this.btn_exit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_exit.Location = new System.Drawing.Point(62, 278);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(246, 91);
+            this.btn_exit.Size = new System.Drawing.Size(164, 59);
             this.btn_exit.TabIndex = 1;
             this.btn_exit.Text = "Exit";
             this.btn_exit.UseVisualStyleBackColor = true;
@@ -58,10 +56,9 @@
             // 
             // btn_Leveleditor
             // 
-            this.btn_Leveleditor.Location = new System.Drawing.Point(93, 265);
-            this.btn_Leveleditor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_Leveleditor.Location = new System.Drawing.Point(62, 172);
             this.btn_Leveleditor.Name = "btn_Leveleditor";
-            this.btn_Leveleditor.Size = new System.Drawing.Size(246, 82);
+            this.btn_Leveleditor.Size = new System.Drawing.Size(164, 53);
             this.btn_Leveleditor.TabIndex = 2;
             this.btn_Leveleditor.Text = "Leveleditor";
             this.btn_Leveleditor.UseVisualStyleBackColor = true;
@@ -70,27 +67,26 @@
             // lbl_AdvancedWars
             // 
             this.lbl_AdvancedWars.AutoSize = true;
-            this.lbl_AdvancedWars.Location = new System.Drawing.Point(150, 29);
-            this.lbl_AdvancedWars.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_AdvancedWars.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_AdvancedWars.Location = new System.Drawing.Point(78, 19);
             this.lbl_AdvancedWars.Name = "lbl_AdvancedWars";
-            this.lbl_AdvancedWars.Size = new System.Drawing.Size(121, 20);
+            this.lbl_AdvancedWars.Size = new System.Drawing.Size(134, 20);
             this.lbl_AdvancedWars.TabIndex = 3;
             this.lbl_AdvancedWars.Text = "Advanced Wars";
             // 
             // Titelmenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 578);
+            this.ClientSize = new System.Drawing.Size(298, 426);
             this.Controls.Add(this.lbl_AdvancedWars);
             this.Controls.Add(this.btn_Leveleditor);
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.btn_newGame);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(439, 634);
+            this.MaximumSize = new System.Drawing.Size(298, 426);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(439, 634);
+            this.MinimumSize = new System.Drawing.Size(298, 426);
             this.Name = "Titelmenu";
             this.Text = "Titelmenu";
             this.ResumeLayout(false);

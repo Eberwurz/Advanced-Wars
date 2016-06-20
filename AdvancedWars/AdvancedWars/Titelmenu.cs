@@ -20,6 +20,7 @@ namespace AdvancedWars
         private void btn_newGame_Click(object sender, EventArgs e)
         {
             GameEdit Edit = new GameEdit();
+            this.Hide();
             Edit.ShowDialog();
         }
 
