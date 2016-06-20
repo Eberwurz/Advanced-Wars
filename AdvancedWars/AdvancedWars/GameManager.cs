@@ -471,7 +471,7 @@ namespace AdvancedWars
 
         private void renderRaster(Graphics a)
         {
-            Pen pen = new Pen(Color.Black, 2);
+            Pen pen = new Pen(Color.Black, 1);
             //Möglicherweise überholen wenn veränderbare Feldgröße
             for (int x = GameConstants.GAMEFIELD_TILESIZE; x < GameConstants.GAMEFIELD_WIDTH; x = x + GameConstants.GAMEFIELD_TILESIZE)
             {
