@@ -59,6 +59,7 @@ namespace AdvancedWars
         public const string POWERUP_SPEED = "speed";
         public const string POWERUP_SLOW = "slow";
         public const string POWERUP_GOLD = "gold";
+        public const string POWERUP_HEALTH = "health";
     }
 
 }

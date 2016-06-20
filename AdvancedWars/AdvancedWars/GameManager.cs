@@ -156,8 +156,36 @@ namespace AdvancedWars
                     mActivePlayer = mPlayerRed;
                 mActivePhase = GameConstants.PHASE_SET;
                 ActivePlayerChanged();
+                spawnPowerUps();
             }
 
+        }
+
+        private void spawnPowerUps()
+        {
+            string[] powerUps = new string[] { GameConstants.POWERUP_GOLD, GameConstants.POWERUP_SLOW, GameConstants.POWERUP_SPEED, GameConstants.POWERUP_HEALTH };
+            Random random = new Random((int)DateTime.Now.Ticks);
+            for (int i=0; i<3; i++)
+            {
+                int powerUp = random.Next(0, powerUps.Length);
+                int fieldX = random.Next(0, mFields.GetLength(0));
+                int fieldY = random.Next(0, mFields.GetLength(1));
+                int value = 0;
+                if (powerUps[powerUp]== GameConstants.POWERUP_GOLD)
+                {
+                    value = random.Next(1, 26);
+                }
+                if (powerUps[powerUp] == GameConstants.POWERUP_HEALTH)
+                {
+                    value = random.Next(10, 51);
+                }
+                
+                if (mFields[fieldX,fieldY].PowerUp == GameConstants.POWERUP_NONE)
+                {
+                    mFields[fieldX, fieldY].PowerUp = powerUps[powerUp];
+                    mFields[fieldX, fieldY].PowerUpValue = value;
+                }
+            }           
         }
 
         //Versucht ein Schiff zu plazieren. Gibt bei Erfolg true zurück.
@@ -418,6 +446,9 @@ namespace AdvancedWars
                     break;
                 case GameConstants.POWERUP_SLOW:
                     imageID = Images.TYPE_POWERUP_SLOW;
+                    break;
+                case GameConstants.POWERUP_HEALTH:
+                    imageID = Images.TYPE_POWERUP_HEALTH;
                     break;
             }
             g.DrawImage(Images.Instance.GetImage(imageID), tileX, tileY, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
