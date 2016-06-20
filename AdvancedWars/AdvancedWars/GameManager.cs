@@ -167,29 +167,20 @@ namespace AdvancedWars
             if(ship != null)
             {
                 Point selectedPoint = new Point(x, y);
-                if (ActivePlayer.Gold >= ship.Gold)
+                if (ActivePlayer.Gold >= ship.Type.Cost)
                 {
-                    foreach (Point p in ActivePlaySpawnAreaPoints)
-                    {
-                        if (selectedPoint.Equals(p))
-                        {
-                            success = true;
-                            break;
-                        }
-                    }
-                    if (success)
+                    if (ActivePlaySpawnAreaPoints.Contains(selectedPoint))
                     {
                         if (mFields[x, y].Ship == null)
                         {
                             mFields[x, y].Ship = ship;
-                            ActivePlayer.Gold -= ship.Gold;
+                            ActivePlayer.Gold -= ship.Type.Cost;
                             ActivePlayer.AddShip(ship);
                             Graphics g = Graphics.FromImage(mGameBoard);
-                            drawShip(mFields[x,y],g, x, y);
+                            drawShip(mFields[x,y],g, x * GameConstants.GAMEFIELD_TILESIZE, y * GameConstants.GAMEFIELD_TILESIZE);
                             g.Dispose();
+                            success = true;
                         }
-                        else
-                            success = false;
                     }
                 }
             }            
@@ -215,7 +206,7 @@ namespace AdvancedWars
                     }
                     else if (mActivePhase == GameConstants.PHASE_FIGHT)
                     {
-                        if (mFields[p.X, p.Y].Ship.IsMoveable)
+                        if (mFields[p.X, p.Y].Ship.CanAttack)
                         {
                             success = true;
                             mSelectedFieldPoint = p;
@@ -297,7 +288,7 @@ namespace AdvancedWars
 
             if (mShipMovementAreaPoints.Contains(p))
             {
-                if ((mFields[p.X,p.Y].Ship) == null)
+                if ((mFields[p.X,p.Y].Ship) == null && selectedField.Ship != null)
                 {
                     if (ActivePlaySpawnAreaPoints.Contains(p))
                     {
@@ -386,6 +377,7 @@ namespace AdvancedWars
             drawField(field,g, TileX, TileY);
             drawPowerUp(field, g, TileX, TileY);
             drawShip(field, g, TileX, TileY);
+            renderRaster(g);
             
             g.Dispose();
         }
@@ -432,48 +424,63 @@ namespace AdvancedWars
         }
 
         //Zeichnet ein Schiff auf die Map.
-        private void drawShip(Field field,Graphics g, int x, int y)
+        private void drawShip(Field field, Graphics g, int x, int y)
         {
-            int TileX = x * GameConstants.GAMEFIELD_TILESIZE;
-            int TileY = y * GameConstants.GAMEFIELD_TILESIZE;
-            int imageID = 0;
-            if (ActivePlayer.Color == Color.Red)
+            if (field.Ship != null)
             {
-                switch (field.Ship.Type.Name)
+                int imageID = 0;
+                if (ActivePlayer.Color == Color.Red)
                 {
-                    case GameConstants.TYPE_STANDART:
-                        imageID = Images.TYPE_STANDART_RED;
-                        break;
-                    case GameConstants.TYPE_TRANSPORTER:
-                        imageID = Images.TYPE_TRANSPORTER_RED;
-                        break;
-                    case GameConstants.TYPE_DEFENSESHIP:
-                        imageID = Images.TYPE_DEFENSESHIP_RED;
-                        break;
-                    case GameConstants.TYPE_BIGSHIP:
-                        imageID = Images.TYPE_BIGSHIP_RED;
-                        break;
+                    switch (field.Ship.Type.Name)
+                    {
+                        case GameConstants.TYPE_STANDART:
+                            imageID = Images.TYPE_STANDART_RED;
+                            break;
+                        case GameConstants.TYPE_TRANSPORTER:
+                            imageID = Images.TYPE_TRANSPORTER_RED;
+                            break;
+                        case GameConstants.TYPE_DEFENSESHIP:
+                            imageID = Images.TYPE_DEFENSESHIP_RED;
+                            break;
+                        case GameConstants.TYPE_BIGSHIP:
+                            imageID = Images.TYPE_BIGSHIP_RED;
+                            break;
+                    }
                 }
+                else
+                {
+                    switch (field.Ship.Type.Name)
+                    {
+                        case GameConstants.TYPE_STANDART:
+                            imageID = Images.TYPE_STANDART_BLUE;
+                            break;
+                        case GameConstants.TYPE_TRANSPORTER:
+                            imageID = Images.TYPE_TRANSPORTER_BLUE;
+                            break;
+                        case GameConstants.TYPE_DEFENSESHIP:
+                            imageID = Images.TYPE_DEFENSESHIP_BLUE;
+                            break;
+                        case GameConstants.TYPE_BIGSHIP:
+                            imageID = Images.TYPE_BIGSHIP_BLUE;
+                            break;
+                    }
+                }
+                g.DrawImage(Images.Instance.GetImage(imageID), x, y, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
             }
-            else
+        }
+
+        private void renderRaster(Graphics a)
+        {
+            Pen pen = new Pen(Color.Black, 2);
+            //Möglicherweise überholen wenn veränderbare Feldgröße
+            for (int x = GameConstants.GAMEFIELD_TILESIZE; x < GameConstants.GAMEFIELD_WIDTH; x = x + GameConstants.GAMEFIELD_TILESIZE)
             {
-                switch (field.Ship.Type.Name)
-                {
-                    case GameConstants.TYPE_STANDART:
-                        imageID = Images.TYPE_STANDART_BLUE;
-                        break;
-                    case GameConstants.TYPE_TRANSPORTER:
-                        imageID = Images.TYPE_TRANSPORTER_BLUE;
-                        break;
-                    case GameConstants.TYPE_DEFENSESHIP:
-                        imageID = Images.TYPE_DEFENSESHIP_BLUE;
-                        break;
-                    case GameConstants.TYPE_BIGSHIP:
-                        imageID = Images.TYPE_BIGSHIP_BLUE;
-                        break;
-                }
+                a.DrawLine(pen, x, 0, x, GameConstants.GAMEFIELD_HEIGHT);
             }
-            g.DrawImage(Images.Instance.GetImage(imageID), TileX, TileY, GameConstants.GAMEFIELD_TILESIZE, GameConstants.GAMEFIELD_TILESIZE);
+            for (int y = GameConstants.GAMEFIELD_TILESIZE; y < GameConstants.GAMEFIELD_HEIGHT; y = y + GameConstants.GAMEFIELD_TILESIZE)
+            {
+                a.DrawLine(pen, 0, y, GameConstants.GAMEFIELD_WIDTH, y);
+            }
         }
     }
 }

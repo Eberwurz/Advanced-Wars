@@ -22,6 +22,7 @@ namespace AdvancedWars
             mShipMoved=0;
             mColor = color;
             mHealth = GameConstants.BASEHEALTH;
+            mShips = new List<Ship>();
         }
 
         public void AddShip(Ship s)

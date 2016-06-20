@@ -35,6 +35,10 @@ namespace AdvancedWars
         private void onGameOver()
         {
             // Tu was wenn GameOver.
+            if(MessageBox.Show(String.Format("{0} hat gewonnen", mGameManager.ActivePlayer.Name), "Gratulation")== DialogResult.OK)
+            {
+                Application.Exit();
+            }
             log(Color.Green, String.Format("{0} hat gewonnen", mGameManager.ActivePlayer.Name));
             pic_GameField.Enabled = false;
         }
@@ -202,7 +206,11 @@ namespace AdvancedWars
                         if (mGameManager.ActivePlayersShipClicked(mClickedPoint))
                             setGraphicalArea(g, mGameManager.ShipMovementAreaPoints);
                         else
+                        {
                             log(Color.Red, "Kein gültiges Schiff gewählt!");
+                            mShowMovement = false;
+                        }
+                            
                     }
                 }
                 if (mGameManager.ActivePhase == GameConstants.PHASE_FIGHT)
@@ -213,7 +221,12 @@ namespace AdvancedWars
                         if (mGameManager.ActivePlayersShipClicked(mClickedPoint))
                             setGraphicalArea(g, mGameManager.ShipCombatAreaPoints);
                         else
+                        {
                             log(Color.Red, "Kein gültiges Schiff gewählt!");
+                            mShowRadius = false;
+                        }
+                            
+                            
                     }
                 }
                 g.Dispose();
@@ -250,7 +263,11 @@ namespace AdvancedWars
                        {
                             log(Color.Red, "Schiff konnte nicht gesetzt werden");
                         }
-                        else { log(Color.Green, "Schiff wurde gesetzt."); }
+                        else {
+                            log(Color.Green, "Schiff wurde gesetzt.");
+                            mActivatedShip = null;
+                            setSelectedShipBorder(null);
+                        }
                     }
                     break;
                 case GameConstants.PHASE_MOVE:
