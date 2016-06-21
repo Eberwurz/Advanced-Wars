@@ -142,3 +142,5 @@ C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\Advanced
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Leveleditor.exe
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\bin\Debug\Leveleditor.pdb
 C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars_Mirror\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Titelmenu.resources
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.exe
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.pdb

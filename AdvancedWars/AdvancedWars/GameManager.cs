@@ -173,18 +173,23 @@ namespace AdvancedWars
                 int value = 0;
                 if (powerUps[powerUp]== GameConstants.POWERUP_GOLD)
                 {
-                    value = random.Next(1, 26);
+                    value = random.Next(1, GameConstants.MAXRANDOMDROP_GOLD);
                 }
                 if (powerUps[powerUp] == GameConstants.POWERUP_HEALTH)
                 {
-                    value = random.Next(10, 51);
+                    value = random.Next(10, GameConstants.MAXRANDOMDROP_HEALTH);
                 }
                 
                 if (mFields[fieldX,fieldY].PowerUp == GameConstants.POWERUP_NONE)
                 {
                     mFields[fieldX, fieldY].PowerUp = powerUps[powerUp];
-                    mFields[fieldX, fieldY].PowerUpValue = value;
+                    mFields[fieldX, fieldY].PowerUpValue = value;                  
+                }else
+                {   //Wird ein Feld getroffen, dass ein PowerUp hat, wird dieses entfernt.
+                    mFields[fieldX, fieldY].PowerUp = GameConstants.POWERUP_NONE;
+                    mFields[fieldX, fieldY].PowerUpValue = 0;
                 }
+                updateFieldImage(mFields[fieldX, fieldY], fieldX, fieldY);
             }           
         }
 

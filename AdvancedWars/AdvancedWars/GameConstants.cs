@@ -7,6 +7,9 @@ namespace AdvancedWars
 {
     public class GameConstants
     {
+        public const int MAXRANDOMDROP_GOLD = 26;
+        public const int MAXRANDOMDROP_HEALTH = 51;
+
         public const int PLAYER_STARTINGGOLD = 100;
         public const int BASEHEALTH = 200;
 
