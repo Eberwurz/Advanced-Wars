@@ -220,6 +220,11 @@ namespace AdvancedWars
             return success;
         }
 
+        public Ship getSelectedShip()
+        {
+            return mFields[mSelectedFieldPoint.X, mSelectedFieldPoint.Y].Ship;
+        }
+
         //Gibt zurück, ob am angeklickten Punkt ein Schiff des aktiven Spielers ist, dass bewegt werden kann. Wenn ja setzt es die Bereiche
         public bool ActivePlayersShipClicked(Point p)
         {
@@ -401,7 +406,7 @@ namespace AdvancedWars
             }
             return success;
         }
-
+        //Updated das Feld an der Stelle x, y
         private void updateFieldImage(Field field, int x, int y)
         {
             Graphics g = Graphics.FromImage(mGameBoard);
@@ -505,6 +510,7 @@ namespace AdvancedWars
             }
         }
 
+        //Zeichnet das Raster
         private void renderRaster(Graphics a)
         {
             Pen pen = new Pen(Color.Black, 1);

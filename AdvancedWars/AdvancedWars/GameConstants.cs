@@ -13,9 +13,9 @@ namespace AdvancedWars
         public const int PLAYER_STARTINGGOLD = 100;
         public const int BASEHEALTH = 200;
 
-        public const string TYPE_BIGSHIP = "Bigship";
+        public const string TYPE_BIGSHIP = "Galeere";
         public const string TYPE_TRANSPORTER = "Transporter";
-        public const string TYPE_DEFENSESHIP = "Defense";
+        public const string TYPE_DEFENSESHIP = "Verteidiger";
         public const string TYPE_STANDART = "Standart";
 
         public const int SHIP_HEALTH = 100;

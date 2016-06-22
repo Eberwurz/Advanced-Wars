@@ -62,6 +62,7 @@ namespace AdvancedWars
             setActivePlayerUI();
             setActivePhaseUI();
             pic_GameField.Refresh();
+            setShipInfo(null);
         }
 
         //Updated das Spielbrett und die Goldanzeige.
@@ -143,6 +144,7 @@ namespace AdvancedWars
             setActivePhaseUI();
 			resetShipSelection();
             updateUI();
+            setShipInfo(null);
         }
 
         //Bei Klick auf ein Schiff wird das aktivierte Schiff gesetzt
@@ -198,39 +200,52 @@ namespace AdvancedWars
                 {
                     setGraphicalArea(g, mGameManager.ActivePlaySpawnAreaPoints);
                 }
-                if (mGameManager.ActivePhase == GameConstants.PHASE_MOVE)
+                else
                 {
-                    //Zeichne beim Move
-                    if (mShowMovement)
+                    if (mGameManager.ActivePlayersShipClicked(mClickedPoint))
                     {
-                        //Zeichne Bewegungskreuz TODO
-                        if (mGameManager.ActivePlayersShipClicked(mClickedPoint))
-                            setGraphicalArea(g, mGameManager.ShipMovementAreaPoints);
-                        else
+                        log(Color.Green, "Schiff ausgewählt");
+                        setShipInfo(mGameManager.getSelectedShip());
+                        if (mGameManager.ActivePhase == GameConstants.PHASE_MOVE)
                         {
-                            log(Color.Red, "Kein gültiges Schiff gewählt!");
-                            mShowMovement = false;
+                            if (mShowMovement)
+                            {
+                                setGraphicalArea(g, mGameManager.ShipMovementAreaPoints);
+                            }
                         }
-                            
+                        else if (mGameManager.ActivePhase == GameConstants.PHASE_FIGHT)
+                        {
+                            if (mShowRadius)
+                            {
+                                setGraphicalArea(g, mGameManager.ShipCombatAreaPoints);
+                            }                           
+                        }
                     }
-                }
-                if (mGameManager.ActivePhase == GameConstants.PHASE_FIGHT)
-                {
-                    //Zeichne beim Fight
-                    if (mShowRadius)
+                    else
                     {
-                        if (mGameManager.ActivePlayersShipClicked(mClickedPoint))
-                            setGraphicalArea(g, mGameManager.ShipCombatAreaPoints);
-                        else
-                        {
-                            log(Color.Red, "Kein gültiges Schiff gewählt!");
-                            mShowRadius = false;
-                        }
-                            
-                            
+                        log(Color.Red, "Kein gültiges Schiff gewählt!");
+                        mShowRadius = false;
+                        mShowMovement = false;
+                        setShipInfo(null);
                     }
                 }
                 g.Dispose();
+            }
+        }
+
+        //Setzt die Informationen über ein ausgewähltes Schiff
+        private void setShipInfo(Ship ship)
+        {
+            if(ship != null)
+            {
+                LblShipName.Text = ship.Type.Name;
+                lblShipGold.Text = ship.Gold.ToString();
+                lblShipHealth.Text = ship.Type.Health.ToString();
+            }else
+            {
+                LblShipName.Text = "";
+                lblShipGold.Text = "";
+                lblShipHealth.Text = "";
             }
         }
 
@@ -266,7 +281,7 @@ namespace AdvancedWars
                         }
                         else {
                             log(Color.Green, "Schiff wurde gesetzt.");
-                            resetShipSelection()
+                            resetShipSelection();
                         }
                     }
                     break;
@@ -311,6 +326,5 @@ namespace AdvancedWars
             lbl_Log.ForeColor = color;
             lbl_Log.Text = message;
         }
-
     }
 }

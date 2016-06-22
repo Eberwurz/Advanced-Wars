@@ -57,16 +57,24 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblRedPlayerHealth = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblBluePlayerHealth = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.pic_GameField = new System.Windows.Forms.Panel();
             this.lbl_Log = new System.Windows.Forms.Label();
-            this.lblRedPlayerHealth = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblBluePlayerHealth = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblShipHealth = new System.Windows.Forms.Label();
+            this.LblShipName = new System.Windows.Forms.Label();
+            this.lblShipGold = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic_normal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_defense)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_big)).BeginInit();
@@ -74,6 +82,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_player1name
@@ -355,6 +364,24 @@
             this.panel2.Size = new System.Drawing.Size(224, 133);
             this.panel2.TabIndex = 30;
             // 
+            // lblRedPlayerHealth
+            // 
+            this.lblRedPlayerHealth.Location = new System.Drawing.Point(66, 109);
+            this.lblRedPlayerHealth.Name = "lblRedPlayerHealth";
+            this.lblRedPlayerHealth.Size = new System.Drawing.Size(154, 14);
+            this.lblRedPlayerHealth.TabIndex = 30;
+            this.lblRedPlayerHealth.Text = "<Leben>";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 105);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 18);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Leben:";
+            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -365,10 +392,28 @@
             this.panel4.Controls.Add(this.label22);
             this.panel4.Controls.Add(this.lbl_player2name);
             this.panel4.Controls.Add(this.lbl_player2gold);
-            this.panel4.Location = new System.Drawing.Point(925, 339);
+            this.panel4.Location = new System.Drawing.Point(925, 272);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(224, 133);
             this.panel4.TabIndex = 31;
+            // 
+            // lblBluePlayerHealth
+            // 
+            this.lblBluePlayerHealth.Location = new System.Drawing.Point(66, 105);
+            this.lblBluePlayerHealth.Name = "lblBluePlayerHealth";
+            this.lblBluePlayerHealth.Size = new System.Drawing.Size(154, 14);
+            this.lblBluePlayerHealth.TabIndex = 30;
+            this.lblBluePlayerHealth.Text = "<Leben>";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(3, 101);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(58, 18);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "Leben:";
             // 
             // label18
             // 
@@ -419,47 +464,91 @@
             this.lbl_Log.Size = new System.Drawing.Size(870, 48);
             this.lbl_Log.TabIndex = 33;
             // 
-            // lblRedPlayerHealth
+            // lblShipHealth
             // 
-            this.lblRedPlayerHealth.Location = new System.Drawing.Point(66, 109);
-            this.lblRedPlayerHealth.Name = "lblRedPlayerHealth";
-            this.lblRedPlayerHealth.Size = new System.Drawing.Size(154, 14);
-            this.lblRedPlayerHealth.TabIndex = 30;
-            this.lblRedPlayerHealth.Text = "<Leben>";
+            this.lblShipHealth.Location = new System.Drawing.Point(76, 104);
+            this.lblShipHealth.Name = "lblShipHealth";
+            this.lblShipHealth.Size = new System.Drawing.Size(144, 14);
+            this.lblShipHealth.TabIndex = 34;
+            this.lblShipHealth.Text = "<Health>";
             // 
-            // label3
+            // LblShipName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 105);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 18);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Leben:";
+            this.LblShipName.Location = new System.Drawing.Point(76, 44);
+            this.LblShipName.Name = "LblShipName";
+            this.LblShipName.Size = new System.Drawing.Size(144, 14);
+            this.LblShipName.TabIndex = 35;
+            this.LblShipName.Text = "<Name>";
             // 
-            // lblBluePlayerHealth
+            // lblShipGold
             // 
-            this.lblBluePlayerHealth.Location = new System.Drawing.Point(66, 105);
-            this.lblBluePlayerHealth.Name = "lblBluePlayerHealth";
-            this.lblBluePlayerHealth.Size = new System.Drawing.Size(154, 14);
-            this.lblBluePlayerHealth.TabIndex = 30;
-            this.lblBluePlayerHealth.Text = "<Leben>";
+            this.lblShipGold.Location = new System.Drawing.Point(76, 76);
+            this.lblShipGold.Name = "lblShipGold";
+            this.lblShipGold.Size = new System.Drawing.Size(144, 14);
+            this.lblShipGold.TabIndex = 36;
+            this.lblShipGold.Text = "<Gold>";
             // 
-            // label14
+            // panel3
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(3, 101);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(58, 18);
-            this.label14.TabIndex = 31;
-            this.label14.Text = "Leben:";
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.lblShipGold);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.lblShipHealth);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.LblShipName);
+            this.panel3.Location = new System.Drawing.Point(925, 417);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(224, 133);
+            this.panel3.TabIndex = 32;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(2, 9);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(170, 24);
+            this.label16.TabIndex = 32;
+            this.label16.Text = "Gewähltes Schiff:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 18);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Leben:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(4, 41);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(57, 18);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Name:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(4, 72);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(49, 18);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Gold:";
             // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.lbl_BigPrize);
             this.Controls.Add(this.lbl_Log);
             this.Controls.Add(this.pic_GameField);
@@ -498,6 +587,8 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,5 +633,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblBluePlayerHealth;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblShipHealth;
+        private System.Windows.Forms.Label LblShipName;
+        private System.Windows.Forms.Label lblShipGold;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
     }
 }
