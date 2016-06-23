@@ -20,6 +20,7 @@ namespace AdvancedWars
         private Point[] mShipCombatAreaPoints;
         private Point mSelectedFieldPoint;
         private int mActivePhase;
+        private int mRound;
         public event GameManagerChangedHandler ActivePlayerChanged;
         public event GameManagerChangedHandler GameOver;
         
@@ -33,6 +34,7 @@ namespace AdvancedWars
             mPlayerBlue = new Player(pBlueName, Color.Blue);
             mActivePlayer = mPlayerRed;
             mActivePhase = GameConstants.PHASE_SET;
+            mRound = 0;
             getBasePoints();
         }
 
@@ -149,6 +151,7 @@ namespace AdvancedWars
             mActivePhase++;
             if(mActivePhase == 3)
             {
+                mRound++;
                 mActivePlayer.ResetShips();
                 if (mActivePlayer == mPlayerRed)
                     mActivePlayer = mPlayerBlue;
@@ -156,9 +159,12 @@ namespace AdvancedWars
                     mActivePlayer = mPlayerRed;
                 mActivePhase = GameConstants.PHASE_SET;
                 ActivePlayerChanged();
-                spawnPowerUps();
+                if(mRound == 2)
+                {
+                    spawnPowerUps();
+                    mRound = 0;
+                }              
             }
-
         }
 
         private void spawnPowerUps()
@@ -279,6 +285,13 @@ namespace AdvancedWars
         private void setMovementAreaPoints(Point p)
         {
             int movement = mFields[p.X, p.Y].Ship.Type.Movement;
+            if(mFields[p.X,p.Y].PowerUp == GameConstants.POWERUP_SLOW)
+            {
+                movement -= 1;
+            }else if(mFields[p.X, p.Y].PowerUp == GameConstants.POWERUP_SPEED)
+            {
+                movement += 2;
+            }
             List<Point> fields = new List<Point>();
             for (int x = p.X; x <= p.X + movement; x++)
             {
@@ -333,6 +346,18 @@ namespace AdvancedWars
                         ActivePlayer.Gold += selectedField.Ship.Gold;
                         selectedField.Ship.Gold = 0;
                     }
+                    if(mFields[p.X,p.Y].PowerUp == GameConstants.POWERUP_GOLD)
+                    {
+                        selectedField.Ship.Gold += mFields[p.X, p.Y].PowerUpValue;
+                        mFields[p.X, p.Y].PowerUp = GameConstants.POWERUP_NONE;
+                        mFields[p.X, p.Y].PowerUpValue = 0;
+                    }
+                    else if(mFields[p.X, p.Y].PowerUp == GameConstants.POWERUP_HEALTH)
+                    {
+                        selectedField.Ship.Type.Health += mFields[p.X, p.Y].PowerUpValue;
+                        mFields[p.X, p.Y].PowerUp = GameConstants.POWERUP_NONE;
+                        mFields[p.X, p.Y].PowerUpValue = 0;
+                    }
                     mFields[p.X, p.Y].Ship = selectedField.Ship;
                     selectedField.Ship = null;
                     mFields[p.X, p.Y].Ship.IsMoveable = false;
@@ -361,8 +386,7 @@ namespace AdvancedWars
                         if(!mFields[p.X, p.Y].Ship.Alive)
                         {
                             mFields[p.X, p.Y].PowerUp = GameConstants.POWERUP_GOLD;
-                            //TODO
-                            mFields[p.X, p.Y].PowerUpValue = mFields[p.X, p.Y].Ship.Gold;
+                            mFields[p.X, p.Y].PowerUpValue = Convert.ToInt32(mFields[p.X, p.Y].Ship.Gold * 0.5) + Convert.ToInt32(mFields[p.X, p.Y].Ship.Type.Cost/2);
                             Player opponent = mPlayerRed;
                             if (mActivePlayer == mPlayerRed)
                                 opponent = mPlayerBlue;
@@ -513,7 +537,7 @@ namespace AdvancedWars
         //Zeichnet das Raster
         private void renderRaster(Graphics a)
         {
-            Pen pen = new Pen(Color.Black, 1);
+            Pen pen = new Pen(Color.Black, 2);
             //Möglicherweise überholen wenn veränderbare Feldgröße
             for (int x = GameConstants.GAMEFIELD_TILESIZE; x < GameConstants.GAMEFIELD_WIDTH; x = x + GameConstants.GAMEFIELD_TILESIZE)
             {

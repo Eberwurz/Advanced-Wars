@@ -1,0 +1,31 @@
+Advanced Wars
+
+Ziel des Spiels:
+Gegnerische Basis muss zerstört werden. 
+
+Vor dem Spiel:
+Durck Klick auf "Leveleditor" kann eine Karte erstellt werden, die zum Spielen benutzt wird.
+Durch Klicken auf "Spiel starten" geht ein Fenster auf. 
+Beide Spieler geben Ihre Namen ein und wählen eine zuvor erstellte Karte aus. Hierzu wird das "map" Verzeichnis ausgewählt.
+
+Spielablauf:
+Jeder Spieler hat 3 Phasen pro Spielrunde:
+
+- Bauphase
+In dieser Phase kann der Spieler eines oder mehrere Schiffe bauen. Diese dürfen allerdings erst in der darauffolgenden Spielrunde bewegt werden.
+
+- Bewegungsphase
+In dieser Phase darf der Spieler durch Klick auf seine Schiffe diese in einem gewissen Muster (waagrecht, senkrecht) bewegen. 
+Die Reichweite hängt hierbei von dem Schifftyp und möglichen Bewegungsmodifikatoren ab.
+Wird das Schiff auf Lebens- oder Gold Icons bewegt sammelt es diese ein. 
+Das Gold kann dann an der Basis abgeliefert werden und steht für neue Schiffe bereit. 
+Schiffe können nicht auf andere Schiffe oder Riffe bewegt/gebaut werden.
+
+- Kampfphase
+In dieser Phase darf der Spieler durch Klick auf seine Schiffe in einem bestimmten Radius gegnerische Schiffe und Basen angreifen.
+Wird ein gegnerisches Schiff zerstört, lässt das zerstörte Schiff einen Anteil des getragenen Goldes ins Meer fallen. Dieses Gold kann eingesammelt
+und zur Basis gebracht werden.
+
+Am Ende jeder Spielrunde werden zufällig PowerUps auf der Karte platziert.
+
+Wer als erstes die gegnerische Basis zerstört, gewinnt das Spiel!

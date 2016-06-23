@@ -60,10 +60,11 @@ namespace AdvancedWars
             {
                 //lade spiel
                 Game game = new Game(mReader.Bitmap,mReader.Fields, tb_Spieler1.Text, tb_Spieler2.Text);
-                game.Show();
                 this.Hide();
+                game.ShowDialog();                
             }           
         }
+
     }
 }
 
