@@ -322,3 +322,5 @@ D:\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Properties.
 D:\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Game.resources
 D:\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.Titelmenu.resources
 D:\AdvancedWars\AdvancedWars\AdvancedWars\obj\x86\Debug\AdvancedWars.csproj.GenerateResource.Cache
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\AdvancedWars\AdvancedWars\bin\Debug\AdvancedWars.exe.config
+C:\Users\Agentilo-RK\Documents\GitHub\Advanced-Wars\AdvancedWars\AdvancedWars\bin\Debug\help.txt
