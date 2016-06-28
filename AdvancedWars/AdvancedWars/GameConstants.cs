@@ -40,7 +40,7 @@ namespace AdvancedWars
         public const int DEFENSE_MOVEMENTMOD = 2;
         public const int DEFENSE_COSTMOD = 30;
         public const int DEFENSE_DAMAGEMOD = 25;
-        public const int DEFENSE_RADIUSMOD = 4;
+        public const int DEFENSE_RADIUSMOD = 2;
 
         public const int PHASE_SET = 0;
         public const int PHASE_MOVE = 1;
