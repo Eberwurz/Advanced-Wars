@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>0</y>
+      <w>150</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Titelmenu
+--
+
+--
++ Titelmenu ()
+- btn_newGame_Click : void
+- btn_Leveleditor_Click : void
+- btn_exit_Click : void
+- Titelmenu_HelpButtonClicked : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>102</y>
+      <w>126</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Optionen
+--
+- mMapLoaded : bool
+- MapReader mReader
+--
+- btn_MapAufrufen_Click : void
+- btn_SpielStarten_Click : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>102</y>
+      <w>126</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>MapReader
+--
+- mXMLName : string
+- mBitmapName : string
+- mLoadPath : string
+- mMapName : string
+- Field[,] mFields
+- Bitmap mBitmap
+--
++ MapName (string)
++ Field[,] Fields
++ Bitmap mBitmap
++ MapReader (string)
++ TryLoadXMLFromPath (bool)
++ TryLoadBitmap (bool)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>186</y>
+      <w>126</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+- GameManager mGameManager
+- PictureBox[] imgShips
+- mClearDraw : bool
+- Ship mActivatedShip
+- mShowRadius : bool
+- mShowMovement : bool
+- Point mClickedPoint
+--
++ Game
+- onGameOver : void
+- onActivePlayerChanged : void
+- updateUI : void
+- setActivePhaseUI : void
+- enableShipIcons (bool)
+- setActivePlayerUI : void
+- Game_FormClosing : void
+- btn_next_Click : void
+- onShipClick : void
+- setSelectedShipBorder : void
+- pic_GameField_Paint : void
+- setShipInfo : void
+- setGraphicalArea : void
+- pic_GameField_Click : void
+- resetShipSelection : void
+- log : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>462</y>
+      <w>126</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes>GameManager
+--
+- Field[,] mFields
+- Player mPlayerRed
+- Player mPlayerBlue
+- Bitmap mGameBoard
+- Player mActivePlayer
+- Point[] mRedBaseSpawnAreaPoints
+- Point[] mBlueBaseSpawnAreaPoints
+- Point[] mShipMovementAreaPoints
+- Point[] mShipCombatAreaPoints
+- Point mSelectedFieldPoint
+- mActivePhase : int
+- mRound : int
+- event GameManagerChangedHandler ActivePlayerChanged
+- event GameManagerChangedHandler GameOver
+--
++ GameManager
++ Player ActivePlayer
++ Bitmap GameBoard
++ Point[] ActivePlaySpawnAreaPoints
++ Point[] ShipMovementAreaPoints
++ Point[] ShipCombatAreaPoints
++ Player PlayerRed
++ Player PlayerBlue
+- getBasePoints : void
+- setBaseSpawnAreaPoints : void
++ ActivePhase (int)
++ nextPhase : void
+- spawnPowerUps : void
++ TrySetShip (bool)
++ Ship getSelectedShip
++ ActivePlayersShipClicked (bool)
+- setCombatAreaPoints : void
+- setMovementAreaPoints : void
++ TryMoveShip (bool)
++ TryAttackShip (bool)
+- updateFieldImage : void
+- drawField : void
+- drawPowerUp : void
+- drawShip : void
+- renderRaster : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>882</y>
+      <w>126</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>Field
+--
+- mType : string
+- mPowerUp : string
+- mPlayer : string
+- Ship mShip
+- mPowerUpValue : int
+--
++ Field (string)
++ PowerUpValue (int)
++ Player (string)
++ Type (string)
++ Ship Ship
++ PowerUp (string)
++ CopyValues : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>882</y>
+      <w>126</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+- mGold : int
+- mName : string
+- mShipMoved : int
+- Color mColor
+- mHealth : int
+- List&lt;Ship&gt; mShips
+--
++ Player
++ AddShip : void
++ RemoveShip : void
++ ResetShips : void
++ Color Color
++ Gold (int)
++ Name (string)
++ ShipMoved (int)
++ Health (int)
++ isAlive (bool)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>1080</y>
+      <w>126</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>Ship
+--
+- Type mType
+- mGold : int
+- mIsMoveable : bool
+- mCanAttack : bool
+- Player mControllingPlayer
+--
++ Alive (bool)
++ CanAttack (bool)
++ Player ControllingPlayer
++ IsMoveable (bool)
++ Gold (int)
++ Type Type
++ clone : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>1242</y>
+      <w>126</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Type
+--
+- mDamage : int
+- mHealth : int
+- mCost : int
+- mMovement : int
+- mName : string
+- mRadius : int
+--
++ Type (string)
++ Name (string)
++ Damage (int)
++ Radius (int)
++ Health (int)
++ Cost (int)
++ Movement (int)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>102</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Leveleditor
+Forrm 1
+--
++ GameBoard mGameBoard
++ Field mSelectedField
++ PictureBox[] mPowerUpPictures
++ PictureBox[] mFieldPictures
++ mBaseCount : int
++ mPlayer : string
+--
+- onFieldTypeClicked : void
+- getFieldPlayer (string)
+- getFieldType (string)
+- onFieldBoostClicked : void
+- setSelected : void
+- getPowerUp (string)
+- onGameFieldClicked : void
+- LogMessage : void
+- onSaveButtonClick : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>240</y>
+      <w>126</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>Gameboard
+--
+- Field[,] mFields
+- mX : int
+- mY : int
+- mWidth : int
+- mHeight : int
+- Point mRedBase
+- Point mBlueBase
+--
++ GameBoard 
+- initPictures : void
++ Bitmap GameBoardImage
++ Field[,] Fields
++ Field GetField
++ TrySetField (bool)
+- setBasePoint : void
+- updateGameBoardImage : void
+- RenderRaster : void
+- Bitmap getFieldImage
+- initFields : void
++ SaveGameBoard (bool)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>138</x>
+      <y>468</y>
+      <w>126</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>xmlWriter
+--
+
+--
+- mSavePath (string)
++ xmlWriter
++ WriteXMLFile : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>468</y>
+      <w>126</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Field
+--
+- mType : string
+- mPowerUp : string
+- mPlayer : string
+--
++ Player (string)
++ Type (string)
++ PowerUp (string)
++ Field
++ CopyValues : void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>606</y>
+      <w>126</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>static
+GameConstants
+--
++ TYPE_NORMAL : string
++ TYPE_BASE : string
++ TYPE_BLOCKADE : string
++ FIELD_SIZE : int
++ FIELD_X : int
++ FIELD_Y : int
++ POWERUP_NONE : string
++ POWERUP_SPEED : string
++ POWERUP_SLOW : string
++ PLAYER_RED : string
++ PLAYER_BLUE : string
++ PLAYER_NONE : string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>780</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>static
+Images
+--
++ TYPE_BIGSHIP_RED : int
++ TYPE_TRANSPORTER_RED : int
++ TYPE_DEFENSESHIP_RED : int
++ TYPE_STANDART_RED : int
++ TYPE_BIGSHIP_BLUE : int
++ TYPE_TRANSPORTER_BLUE : int
++ TYPE_DEFENSESHIP_BLUE : int
++ TYPE_STANDART_BLUE : int
++ TYPE_BIGSHIP_RED_100 : int
++ TYPE_TRANSPORTER_RED_100 : int
++ TYPE_DEFENSESHIP_RED_100 : int
++ TYPE_STANDART_RED_100 : int
++ TYPE_BIGSHIP_BLUE_100 : int
++ TYPE_TRANSPORTER_BLUE_100 : int
++ TYPE_DEFENSESHIP_BLUE_100 : int
++ TYPE_STANDART_BLUE_100 : int
++ TYPE_POWERUP_COIN : int
++ TYPE_POWERUP_HEALTH : int
++ TYPE_POWERUP_FAST : int
++ TYPE_POWERUP_SLOW : int
++ TYPE_FIELD_NORMAL : int
++ TYPE_FIELD_MOUNTAIN : int
++ TYPE_FIELD_ISLANDBLUE : int
++ TYPE_FIELD_ISLANDRED : int
++ IMAGE_COUNT : int
+--
++ Images
++ Bitmap GetImage</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>534</x>
+      <y>72</y>
+      <w>60</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>72</y>
+      <w>66</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>636</x>
+      <y>156</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>210</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>636</x>
+      <y>432</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>1212</y>
+      <w>18</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>852</y>
+      <w>36</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>852</y>
+      <w>30</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>1014</y>
+      <w>42</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>1050</y>
+      <w>24</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>126</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>438</y>
+      <w>36</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>438</y>
+      <w>36</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>294</y>
+      <w>114</w>
+      <h>876</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;1440.0;10.0;1440.0;10.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+</diagram>
